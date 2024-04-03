@@ -6,9 +6,9 @@ GHGPy is a Python package for the GHG Inventory.
 
 - **Website:** https://ghgpy.iclimate.io.vn
 - **Documentation:** https://ghgpy.iclimate.io.vn
-- **Source code:** https://github.com/bkt92/ghgpy
+- **Source code:** https://github.com/iClimate/ghgpy
 - **Contributing:** https://ghgpy.iclimate.io.vn/devdocs/dev/index.html
-- **Bug reports:** https://github.com/bkt92/ghgpy/issues
+- **Bug reports:** https://github.com/iClimate/ghgpy/issues
 
 Call for Contributions
 ----------------------
