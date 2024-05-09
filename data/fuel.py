@@ -3,6 +3,7 @@ Fuel objects
 Represent a amount of a specific fuel
 """
 from data.unit_converters import *
+import json
 
 class base_fuel:
     """
@@ -11,7 +12,7 @@ class base_fuel:
     """
     # Init attributes of fuel
     def __init__(self, name: str, desc: str, ncv: float, ccf: float, density: float, amount: float, unit: str):
-        self.name = name # Name of fuel
+        self.name = name # Name/code of fuel
         self.desc = desc # More information about fuel
         self.ncv = ncv # Tj/Gg
         self.ccf = ccf # Carbon content of fuel
@@ -85,9 +86,33 @@ class base_fuel:
                              self._to_kg()+other._to_kg(), "kg")
         else:
             return NotImplemented
+        
+class fuel_json(base_fuel):
+    '''
+    Load json file to fuel class
+    schema:
+    { 
+    name: Name/code of fuel,
+    amount: amount of fuel (unit),
+    unit: unit of amount fuel,
+    default: 1/0,
+    custom:
+        {
+        desc: More information about fuel
+        ncv: Net calorific value (Tj/Gg)
+        ccf: Carbon content of fuel (kg/GJ)
+        density: Density of fuel (kg/m3)
+        }
+    }
+    '''
+
+    # Load fuel from json file
+    def __init__(self, data):
+
+        super().__init__('DO', 'Gas/Diesel Oil', 43.0, 20.2, 844, amount, unit)
 
         
-class DO(base_fuel):
+class default_fuel(base_fuel):
     '''
     `amount: amount of fuel`\n
     `unit: unit of fuel`
@@ -95,27 +120,41 @@ class DO(base_fuel):
     -------------
     Data Sources: \n
     Calorific value: 2006 IPCC Guidelines for National Greenhouse Gas Inventories V2_Ch1 - TABLE 1.2:
-    https://www.ipcc-nggip.iges.or.jp/public/2006gl/pdf/2_Volume2/V2_1_Ch1_Introduction.pdf\n
+    https://www.ipcc-nggip.iges.or.jp/public/2006gl/pdf/2_Volume2/V2_1_Ch1_Introduction.pdf \n
     Density: IEA Database documentation:
-    https://wds.iea.org/wds/pdf/oil_documentation.pdf\n
+    https://wds.iea.org/wds/pdf/oil_documentation.pdf \n
 
     '''
-    def __init__(self, amount, unit):
-        super().__init__('DO', 'Gas/Diesel Oil', 43.0, 20.2, 844, amount, unit)
+    def __init__(self, fuel, amount, unit):
+        if fuel not in fuel_list.keys():
+            raise ValueError("Invalid Unit.")
+        
+        super().__init__(fuel, fuel_list[fuel]['desc'], fuel_list[fuel]['ncv'], \
+                         fuel_list[fuel]['ccf'], fuel_list[fuel]['density'], amount, unit)
 
-class DO(base_fuel):
-    '''
-    `amount: amount of fuel`\n
-    `unit: unit of fuel`
+    @staticmethod
+    def get_fuel_list():
+        return list(fuel_list.keys())
 
-    -------------
-    Data Sources: \n
-    Calorific value and Carbon content (ccf): 2006 IPCC Guidelines for National Greenhouse Gas Inventories V2_Ch1 - TABLE 1.2:
-    https://www.ipcc-nggip.iges.or.jp/public/2006gl/pdf/2_Volume2/V2_1_Ch1_Introduction.pdf\n
-    Density: IEA Database documentation:
-    https://wds.iea.org/wds/pdf/oil_documentation.pdf\n
 
-    '''
-    def __init__(self, amount, unit):
-        super().__init__('DO', 'Gas/Diesel Oil', 43.0, 20.2, 844, amount, unit)
+"""
+FUEL DATA:
 
+Data Sources: \n
+Calorific value: 2006 IPCC Guidelines for National Greenhouse Gas Inventories V2_Ch1 - TABLE 1.2:
+https://www.ipcc-nggip.iges.or.jp/public/2006gl/pdf/2_Volume2/V2_1_Ch1_Introduction.pdf \n
+Density: IEA Database documentation:
+https://wds.iea.org/wds/pdf/oil_documentation.pdf \n
+"""
+
+fuel_list = {
+    "DO": {
+        "desc": "Gas/Diesel Oil",
+        "ncv": 43.0,
+        "ccf": 20.2,
+        "density": 844
+    },
+    "RFO": {
+
+    }
+}
