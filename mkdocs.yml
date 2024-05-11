@@ -1,7 +1,7 @@
 site_name: GHGPy Docs
 
 theme:
-  name: "readthedocs"
+  name: "material"
 
 plugins:
   - mkdocstrings

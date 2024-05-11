@@ -23,12 +23,11 @@ class GHGGas:
     """
     GHG Gas Object (use for all kind of GHG gas) \n
     Representative by tCO2e \n
-    Allow "+, -" operators with the same kind of fuel
+    Allow "+, -" operators with the same kind of gas
     """
     # Init attributes of fuel
     def __init__(self, name: str, amount: float, unit: str, desc: str, gwp: float, density: float):
         self.data = GHGDATA(name=name, amount=amount, unit=unit, desc=desc, gwp=gwp, density=density)
-        self.emission = self._to_tonnes()*self.data.gwp
 
     # Convert to tonnes
     def to_tonnes(self):
@@ -42,11 +41,14 @@ class GHGGas:
                 return None
             else:
                 return volume_units.convert(self.data.amount, self.data.unit, 'm3')*self.data.density/1000
+    
+    def emission(self):
+        return self.to_tonnes()*self.data.gwp
 
     def __repr__(self) -> str:
         return (
             'fuel('
-            f'name={self.data.name!r}, amount={self.emission!r} tCO2e)'
+            f'name={self.data.name!r}, amount={self.emission()!r} tCO2e)'
         )
 
     def __hash__(self) -> int:

@@ -2,4 +2,4 @@ This page contains in-depth documentation of `unitconverter` package.  Use it as
 reference for the technical implementation of the
 `converter` project code.
 
-::: src.ghgpy.datamodel
+::: src.ghgpy.datamodel.fuel
