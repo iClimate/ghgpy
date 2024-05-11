@@ -20,7 +20,7 @@ class weigh_units:
     units = ['g', 'kg', 'tonne', 'Gg']
     @staticmethod
     def convert(val: float, unit_in: str, unit_out: str) -> float:
-        SI = {'g': 1.0, 'kg': 1000.0, 'tonne': 1.0*10**6, 'Gg': 1.0*10**9}
+        SI = {'g': 1.0, 'kg': 1000.0, 'tonne': 1.0*10**6, 'tonnes': 1.0*10**6, 'Gg': 1.0*10**9}
         return val * SI[unit_in] / SI[unit_out]
 
 class volume_units:

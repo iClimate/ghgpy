@@ -1,0 +1,27 @@
+# pyproject.toml
+
+[build-system]
+requires      = ["setuptools>=67.8.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "ghgpy"
+version = "1.0.0"
+description = "Carbon inventory, make it easy!"
+readme = "README.md"
+authors = [{ name = "Bui Khac Tu", email = "bkt992@gmail.com" }]
+license = { file = "LICENSE" }
+classifiers = [
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+]
+keywords = ["ghgpy", "climate", "sustainability", "carbon"]
+dependencies = []
+requires-python = ">=3.11.0"
+
+[project.optional-dependencies]
+dev = ["pytest", "pip-tools"]
+
+[project.urls]
+Homepage = "https://ghgpy.iclimate.io.vn/"
