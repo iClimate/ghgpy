@@ -17,11 +17,14 @@ Main contributors: Vu Nang Nam
 default_fuel_database = {
     "DO": {
         "desc": "Gas/Diesel Oil",
-        "ncv": 43.0,
-        "ccf": 20.2,
-        "density": 844
+        "ncv": {"value": 43.0,
+                "uncertainty": 0
+                },
+        "ccf": {"value": 20.2,
+                "uncertainty": 0.4
+                },
+        "density": {"value": 844,
+                "uncertainty": 0
+                }
     },
-    "RFO": {
-
-    }
 }

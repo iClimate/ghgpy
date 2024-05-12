@@ -3,3 +3,5 @@ reference for the technical implementation of the
 `converter` project code.
 
 ::: src.ghgpy.datamodel.fuel
+::: src.ghgpy.datamodel.ghggas
+::: src.ghgpy.datamodel.unit_converters

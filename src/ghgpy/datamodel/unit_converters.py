@@ -7,7 +7,7 @@ class energy_units:
     """
     Convert between difference energy units
     """
-    units = ['j', 'kj', 'mj', 'tj', 'gj', 'tj']
+    units = ['j', 'kj', 'mj', 'tj', 'gj', 'Tj']
     @staticmethod
     def convert(val: float, unit_in: str, unit_out: str) -> float:
         SI = {'j': 1.0, 'kj': 1000.0, 'mj': 1.0*10**6, 'gj': 1.0*10**9, 'tj': 1.0*10**12}

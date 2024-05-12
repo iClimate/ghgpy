@@ -1,36 +1,35 @@
-## How To Convert Units?
+## How Calculate your factory emission?
 
-The `converter` Python package helps you perform various unit conversions.
-
+The `ghgpy` Python package helps you doing ghg invertory in the easy way and more ...
 Before using the package, you need to install it on your system. You can do it by using pip:
 
-    pip install python-unitconverterermac
+    pip install ghgpy
 
 Inside of your python script you can now import the
-converter from the `unitconverter`
+converter from the `ghgpy`
 package:
 
     # your_script.py
-    from unitconverter import converter
+    from ghgpy import factory
 
-After you've imported the package, you can use it
-to perform various unit conversions:
+After you've imported the package, you can use it:
 
     # your_script.py
-    from unitconverter import converter
+    from ghgpy import factory
+    from ghgpy.activities.energy import combustion
 
-    print(converter.convertLength(20, "m", "cm"))  # OUTPUT: 200.0
-    print(converter.convertWeight(5, "kilogram", "g")) # OUTPUT: 5000.0
-
-You can also import conversion functions for specific units:
+First you need to crete a factory with basic information:
     # your_script.py
-    from unitconverter.converter import convertLength
+    your_factory = factory("your inpu here")
 
-You can then call the specific function to convert units:
+Then you can add a process to your factory with fuel data:
     # your_script.py
-    from unitconverter.converter import convertLength
+    your_factory.add_process(combustion(fuel, "type of combustion"))
 
-    print(convertLength(5, "meter", "centimeter")) # OUTPUT: 500.0
+Get the total emission of your factory
+    your_factory.emission()
 
 
-Modules available for conversion include: `convertLength`, `convertWeight`, `convertVolume`, `convertPressure`, `convertEnergy`, `convertData`, `convertSpeed`, `convertTime`, `convertTemperature`
+Activity modules: `combustion`, `refrigerant_use`, `refrigerant_use`
+Fuel modules: `BaseFuel`, `DefaultFuel`
+Material and GHG gas modules: `GHGGas`

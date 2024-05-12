@@ -12,16 +12,35 @@ from typing import Optional
 from pydantic import BaseModel
 from uncertainty.utypes import ufloat
 
-# Data model, if include uncertainly in the data -> represent by tuple (value, uncertainty)
+# Data model for number with uncertainty 
+class UNumber(BaseModel):
+    value: float
+    uncertainty: Optional[float] = 0
+    def to_ufnum(self):
+        return ufnum(self.value, self.uncertainty)
+
+# Ufloat data type with to_dict and from_dict function
+class ufnum(ufloat):
+    def __init__(self, value, uncertainty=0):
+        super().__init__(value, uncertainty)
+    @classmethod
+    def from_dict(cls, dict : dict):
+        return cls(dict['value'], dict['uncertainty'])
+    def to_unum(self):
+        return UNumber(value=self.value, uncertainty=self.uncertainty)
+
+
+# Data model for properties 
 class FuelProperties(BaseModel):
     desc: Optional[str] = None # More information about fuel
-    ncv: Optional[float | tuple[float, float]] = None # Net calorific value (Tj/Gg)
-    ccf: Optional[float| tuple[float, float]] = None # Carbon content of fuel (tonne/TJ, kg/Gj)
-    density: Optional[float | tuple[float, float]] = None # Density (kg/m3)
+    ncv: Optional[UNumber] = None # Net calorific value (Tj/Gg)
+    ccf: Optional[UNumber] = None # Carbon content of fuel (tonne/TJ, kg/Gj)
+    density: Optional[UNumber] = None # Density (kg/m3)
 
+# Data model for Fuel data
 class FuelData(BaseModel):
     name: str = None # Name/code of fuel
-    amount: float | tuple[float, float] = None # amount of fuel
+    amount: UNumber = None # amount of fuel
     unit: str = None # unit of fuel
     properties: Optional[FuelProperties] = None
 
@@ -33,11 +52,11 @@ class BaseFuel:
     Allow convert to different property (Weight, Volume, Carbon Content)
     """
     # Init attributes of fuel
-    def __init__(self, name: str, desc: str, ncv: float, ccf: float, \
-                 density: float, amount: float, unit: str):
+    def __init__(self, name: str, desc: str, ncv: ufnum, ccf: ufnum, \
+                 density: ufnum, amount: ufnum, unit: str):
         
-        properties = FuelProperties(desc=desc, ncv=ncv, ccf=ccf, density=density)
-        self.data = FuelData(name=name, amount=amount, unit=self._is_valid_unit(unit), properties=properties)
+        properties = FuelProperties(desc=desc, ncv=ncv.to_unum(), ccf=ccf.to_unum(), density= density.to_unum())
+        self.data = FuelData(name=name, amount= amount.to_unum(), unit=self._is_valid_unit(unit), properties=properties)
 
     # Validate unit
     def _is_valid_unit(self, unit):
@@ -46,88 +65,72 @@ class BaseFuel:
         return unit
 
     # Convert to TJ
-    def to_tj(self):
+    def cal_energy(self, unit='tj'):
         '''
-        Energy of Fuel
+        Energy of Fuel in unit \n
+        Default unit `Tj`
         '''
         if any(x == None for x in [self.data.amount, self.data.properties.ncv]):
             return None
-        if type(self.data.amount) == tuple:
-            amount = ufloat(self.data.amount)
-        else:
-            amount = self.data.amount
-        if type(self.data.properties.ncv) == tuple:
-            ncv = ufloat(self.data.properties.ncv)
-        else:
-            ncv = self.data.properties.ncv
+        amount = self.data.amount.to_ufnum()
+        ncv = self.data.properties.ncv.to_ufnum()
         if self.data.unit in weigh_units.units:
-            return weigh_units.convert(amount, self.data.unit, 'Gg')*ncv
+            energy = weigh_units.convert(amount, self.data.unit, 'Gg')*ncv
+            return energy_units.convert(energy, 'tj', unit)
         if self.data.unit in volume_units.units:
             if self.data.properties.density == None:
                 return None
             else:
-                if type(self.data.properties.density) == tuple:
-                    density = ufloat(self.data.properties.density)
-                else:
-                    density = self.data.properties.density
-                return weigh_units.convert(volume_units.convert(amount, self.data.unit, 'm3')\
+                density = self.data.properties.density.to_ufnum()
+                energy = weigh_units.convert(volume_units.convert(amount, self.data.unit, 'm3')\
                                            *density, 'kg', 'Gg')*ncv
+                return energy_units.convert(energy, 'tj', unit)
         
     # Convert to kg
-    def to_kg(self):
+    def cal_weight(self, unit='kg'):
         '''
-        Weight of Fuel
+        Weight of Fuel in unit \n
+        Unit default `kg`
         '''
-        if type(self.data.amount) == tuple:
-            amount = ufloat(self.data.amount)
-        else:
-            amount = self.data.amount       
+        amount = self.data.amount.to_ufnum()
         if self.data.unit in weigh_units.units:
-            return weigh_units.convert(amount, self.data.unit, 'kg')
+            return weigh_units.convert(amount, self.data.unit, unit)
         if self.data.unit in volume_units.units:
             if self.data.properties.density == None:
                 return None
             else:
-                if type(self.data.properties.density) == tuple:
-                    density = ufloat(self.data.properties.density)
-                else:
-                    density = self.data.properties.density
-                return volume_units.convert(amount, self.data.unit, 'm3')*density
+                density = self.data.properties.density.to_ufnum()
+                weight = volume_units.convert(amount, self.data.unit, 'm3')*density
+                return weigh_units.convert(weight, 'kg', unit)
         
     # Convert carbon content (kg)
-    def to_cc(self):
+    def calc_cc(self, unit='kg'):
         '''
-        Carbon content of Fuel
+        Carbon content of Fuel in unit \n
+        Default unit `kg`
         '''
         if self.data.properties.ccf == None:
             return None
         else:
-            if type(self.data.properties.ccf) == tuple:
-                ccf = ufloat(self.data.properties.ccf)
-            else:
-                ccf = self.data.properties.ccf
-            return 1000*self.to_tj()*ccf
+            ccf = self.data.properties.ccf.to_ufnum()
+            return weigh_units.convert(1000*self.cal_energy()*ccf, 'kg', unit)
 
     # Convert to volume (litre)
-    def to_litre(self):
+    def cal_volume(self, unit='l'):
         '''
-        Volume of Fuel
+        Volume of Fuel in unit \n
+        Default unit `litre`
         '''
-        if type(self.data.amount) == tuple:
-            amount = ufloat(self.data.amount)
-        else:
-            amount = self.data.amount
+        amount = self.data.amount.to_ufnum()
         if self.data.unit in weigh_units.units:
             if self.data.properties.density == None:
                 return None
             else:
-                if type(self.data.properties.density) == tuple:
-                    density = ufloat(self.data.properties.density)
-                else:
-                    density = self.data.properties.density
-                return 1000*weigh_units.convert(amount, self.data.unit, 'kg')/density
+                density = self.data.properties.density.to_ufnum()
+                volume = weigh_units.convert(amount, self.data.unit, 'kg')/density
+                return volume_units.convert(volume, 'm3', unit)
         if self.data.unit in volume_units.units:
-            return volume_units.convert(amount, self.data.unit, 'litre')
+            return volume_units.convert(amount, self.data.unit, unit)
     
     # Check two object have enough fuel data
     def _check_fuel(self, other):
@@ -152,30 +155,27 @@ class BaseFuel:
     def __repr__(self) -> str:
         return (
             'fuel('
-            f'name={self.data.name!r}, amount={self.to_tj()!r} Tj)'
+            f'name={self.data.name!r}, amount={self.cal_energy()!r} Tj)'
         )
 
     def __hash__(self) -> int:
-        return hash((self.data.name, self.data.properties.desc, self.to_tj(), self.data.properties.ncv))
+        return hash((self.data.name, self.data.properties.desc, self.cal_energy(), self.data.properties.ncv))
 
     def __eq__(self, other) -> bool:
         if not isinstance(other, BaseFuel):
             return NotImplemented
         return (
-            (self.data.name, self.to_tj(), self.data.properties.ncv) == 
-            (other.data.name, other.to_tj(), other.data.properties.ncv))
+            (self.data.name, self.cal_energy(), self.data.properties.ncv) == 
+            (other.data.name, other.cal_energy(), other.data.properties.ncv))
     
     def __add__(self, other) -> float:
         if not isinstance(other, BaseFuel):
             return NotImplemented
         if self._check_fuel(other):
-            if type(self.to_kg()) == ufloat:
-                amount = self.to_kg()+other.to_kg()
-                return BaseFuel(self.data.name, self.data.properties.desc, self.data.properties.ncv, self.data.properties.ccf, \
-                                self.data.properties.density, (amount.value, amount.uncertainty) , "kg")
-            else:
-                return BaseFuel(self.data.name, self.data.properties.desc, self.data.properties.ncv, self.data.properties.ccf, \
-                                self.data.properties.density, self.to_kg()+other.to_kg(), "kg")
+            sum = self.cal_weight()+other.cal_weight()
+            amount = UNumber(value=sum.value, uncertainty=sum.uncertainty)
+            return BaseFuel(self.data.name, self.data.properties.desc, self.data.properties.ncv, self.data.properties.ccf, \
+                            self.data.properties.density, amount, "kg")    
         else:
             return NotImplemented
 
@@ -183,13 +183,10 @@ class BaseFuel:
         if not isinstance(other, BaseFuel):
             return NotImplemented
         if self._check_fuel(other):
-            if type(self.to_kg()) == ufloat:
-                amount = self.to_kg()-other.to_kg()
-                return BaseFuel(self.data.name, self.data.properties.desc, self.data.properties.ncv, self.data.properties.ccf, \
-                                self.data.properties.density, (amount.value, amount.uncertainty) , "kg")
-            else:
-                return BaseFuel(self.data.name, self.data.properties.desc, self.data.properties.ncv, self.data.properties.ccf, \
-                                self.data.properties.density, self.to_kg()-other.to_kg(), "kg")
+            sub = self.cal_weight()-other.cal_weight()
+            amount = UNumber(value=sub.value, uncertainty=sub.uncertainty)
+            return BaseFuel(self.data.name, self.data.properties.desc, self.data.properties.ncv, self.data.properties.ccf, \
+                            self.data.properties.density, amount, "kg")
         else:
             return NotImplemented
     
@@ -212,8 +209,9 @@ class BaseFuel:
             }
         }
         '''
-        return cls(data["name"], data["properties"]['desc'], data["properties"]['ncv'], \
-                            data["properties"]['ccf'], data["properties"]['density'], data["amount"], data["unit"])                
+        return cls(data["name"], data["properties"]['desc'], ufnum.from_dict(data["properties"]['ncv']), \
+                            ufnum.from_dict(data["properties"]['ccf']), ufnum.from_dict(data["properties"]['density']), \
+                                ufnum.from_dict(data["amount"]), data["unit"])                
 
 # Class with default fuel database        
 class DefaultFuel(BaseFuel):
@@ -229,16 +227,16 @@ class DefaultFuel(BaseFuel):
     https://wds.iea.org/wds/pdf/oil_documentation.pdf \n
 
     '''
-    def __init__(self, database, fuel, amount, unit):
+    def __init__(self, database: dict, fuel: str, amount: ufnum, unit: str):
         if fuel not in database.keys():
-            raise ValueError("Invalid Unit.")
+            raise ValueError("Fuel not found in database.")
         
-        super().__init__(fuel, database[fuel]['desc'], database[fuel]['ncv'], \
-                         database[fuel]['ccf'], database[fuel]['density'], amount, unit)
+        super().__init__(fuel, database[fuel]['desc'], ufnum.from_dict(database[fuel]['ncv']), \
+                         ufnum.from_dict(database[fuel]['ccf']), ufnum.from_dict(database[fuel]['density']) , amount, unit)
     
     # Load fuel from json file
     @classmethod
-    def from_json(cls, data):
+    def from_json(cls, database, data):
         '''
         Load json file to fuel class
         Schema:
@@ -248,51 +246,55 @@ class DefaultFuel(BaseFuel):
         unit: unit of amount fuel
         }
         '''
-        return cls(data["name"], data["amount"],  data["unit"])
+        if data["name"] not in database.keys():
+            raise ValueError("Fuel not found in database.")
+        return cls(database, data["name"], data["amount"],  data["unit"])
 
-    def dict_to_fuel(data, database):
-        '''
-        Schema: Class FuelData
+def dict_to_fuel(data, database):
+    '''
+    Schema: Class FuelData
 
-        Load json file to fuel class
-        schema:
-        { 
-        name: Name/code of fuel,
-        amount: Amount of fuel (unit),
-        unit: Unit of amount fuel,
-        properties:
-            {
-            desc: More information about fuel
-            ncv: Net calorific value (Tj/Gg)
-            ccf: Carbon content of fuel (kg/GJ)
-            density: Density of fuel (kg/m3)
-            }
+    Load json file to fuel class
+    schema:
+    { 
+    name: Name/code of fuel,
+    amount: Amount of fuel (unit),
+    unit: Unit of amount fuel,
+    properties:
+        {
+        desc: More information about fuel
+        ncv: Net calorific value (Tj/Gg)
+        ccf: Carbon content of fuel (kg/GJ)
+        density: Density of fuel (kg/m3)
         }
-        '''
-        _required_data = ['name', 'amount', 'unit']
-        _attributes_list = set(['desc', 'ncv', 'ccf', 'density'])
+    }
+    '''
+    _required_data = ['name', 'amount', 'unit']
+    _attributes_list = set(['desc', 'ncv', 'ccf', 'density'])
 
-        if not all(x in data.keys() for x in _required_data):
-            raise ValueError("Invalid data, missing fields!")
-        
-        elif not "custom" in data.keys():
-            if not data["name"] in database.keys():
-                raise ValueError("Invalid data, fuel name not found in default fuel list!")
-            else:
-                fuel = data["name"]
-                return DefaultFuel(data["name"], data["amount"],  data["unit"])
+    if not all(x in data.keys() for x in _required_data):
+        raise ValueError("Invalid data, missing fields!")
+    
+    elif not "properties" in data.keys():
+        if not data["name"] in database.keys():
+            raise ValueError("Invalid data, fuel name not found in default fuel list!")
         else:
-            if all(x in data["custom"].keys() for x in _attributes_list):
-                return BaseFuel(data["name"], data["custom"]['desc'], data["custom"]['ncv'], \
-                            data["custom"]['ccf'], data["custom"]['density'], data["amount"], data["unit"])                
-            elif not data["name"] in database.keys():
-                raise ValueError("Invalid data, missing atribute which can not get from default fuel list!")
-            else:
-                fuel = data["name"]
-                input = {}
-                for i in _attributes_list.difference(data["custom"].keys()):
-                    input[i] = database[fuel][i]
-                for i in data["custom"].keys():
-                    input[i] = data["custom"][i]
-                return BaseFuel(data["name"], input['desc'], input['ncv'], \
-                            input['ccf'], input['density'], data["amount"],  data["unit"])
+            fuel = data["name"]
+            return DefaultFuel(database, data["name"], ufnum.from_dict(data["amount"]),  data["unit"])
+    else:
+        if all(x in data["properties"].keys() for x in _attributes_list):
+            return BaseFuel(data["name"], data["properties"]['desc'], ufnum.from_dict(data["properties"]['ncv']), \
+                        ufnum.from_dict(data["properties"]['ccf']), ufnum.from_dict(data["properties"]['density']), \
+                            ufnum.from_dict(data["amount"]), data["unit"])                
+        elif not data["name"] in database.keys():
+            raise ValueError("Invalid data, missing atribute which can not get from default fuel list!")
+        else:
+            fuel = data["name"]
+            input = {}
+            for i in _attributes_list.difference(data["properties"].keys()):
+                input[i] = database[fuel][i]
+            for i in data["properties"].keys():
+                input[i] = data["properties"][i]
+            return BaseFuel(data["name"], input['desc'], ufnum.from_dict(input['ncv']), \
+                        ufnum.from_dict(input['ccf']), ufnum.from_dict(input['density']), \
+                            ufnum.from_dict(data["amount"]),  data["unit"])
