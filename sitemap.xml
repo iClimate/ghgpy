@@ -11,6 +11,11 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
+         <loc>https://ghgpy.iclimate.io.vn/devdocs/</loc>
+         <lastmod>2024-05-12</lastmod>
+         <changefreq>daily</changefreq>
+    </url>
+    <url>
          <loc>https://ghgpy.iclimate.io.vn/getting_started/</loc>
          <lastmod>2024-05-12</lastmod>
          <changefreq>daily</changefreq>

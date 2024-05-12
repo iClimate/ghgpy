@@ -368,6 +368,26 @@
   
   
     <li class="md-nav__item">
+      <a href="../devdocs/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Developer Guide
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../license/" class="md-nav__link">
         
   
@@ -439,8 +459,7 @@
 Before using the package, you need to install it on your system. You can do it by using pip:</p>
 <pre><code>pip install ghgpy
 </code></pre>
-<p>Inside of your python script you can now import the
-converter from the <code>ghgpy</code>
+<p>Inside of your python script you can now import the modules from the <code>ghgpy</code>
 package:</p>
 <pre><code># your_script.py
 from ghgpy import factory
@@ -450,14 +469,17 @@ from ghgpy import factory
 from ghgpy import factory
 from ghgpy.activities.energy import combustion
 </code></pre>
-<p>First you need to crete a factory with basic information:
-    # your_script.py
-    your_factory = factory("your inpu here")</p>
-<p>Then you can add a process to your factory with fuel data:
-    # your_script.py
-    your_factory.add_process(combustion(fuel, "type of combustion"))</p>
-<p>Get the total emission of your factory
-    your_factory.emission()</p>
+<p>First you need to crete a factory with basic information:</p>
+<pre><code># your_script.py
+your_factory = factory("your inpu here")
+</code></pre>
+<p>Then you can add a process to your factory with fuel data:</p>
+<pre><code># your_script.py
+your_factory.add_process(combustion(fuel, "type of combustion"))
+</code></pre>
+<p>Get the total emission of your factory</p>
+<pre><code>your_factory.emission()
+</code></pre>
 <p>Activity modules: <code>combustion</code>, <code>refrigerant_use</code>, <code>refrigerant_use</code>
 Fuel modules: <code>BaseFuel</code>, <code>DefaultFuel</code>
 Material and GHG gas modules: <code>GHGGas</code></p>
