@@ -2,6 +2,36 @@ from sqlalchemy import create_engine
 import pandas as pd
 import os
 
+class FuelDataHandle:
+    """
+    Data handle for fuel data in ghgpy
+    """
+    def __init__(self, database):
+        self.data = database
+    def check_exist(self, fuel):
+        return fuel in self.data.keys()
+    def get(self, fuel):
+        return self.data[fuel]
+    
+class GHGDataHandle:
+    def __init__(self, database, source):
+        self.data = database
+        if not source in database.keys():
+            raise ValueError("Fuel not found in database.")
+        self.source = source
+    def check_exist(self, key):
+        return key in self.data[self.source].keys()
+    def get(self, key):
+        return self.data[self.source][key]
+    
+class EFDataHandle:
+    def __init__(self, database):
+        self.data = database
+    def check_exist(self, fuel):
+        return fuel in self.data.keys()
+    def get(self, fuel):
+        return self.data[fuel]
+
 root_path = os.path.dirname(__file__)
 
 class fuels_database:

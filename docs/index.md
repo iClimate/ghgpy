@@ -1,7 +1,7 @@
 This site contains the project documentation for the
-Unit Converter Python component.
+GHG Inventory Python component.
 
-Its aim is to provide you with a simple solution for converting various units.
+Its aim is to provide you with a full feature GHG inventory tool.
 
 ## Table Of Contents
 

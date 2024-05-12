@@ -1,7 +1,18 @@
 site_name: GHGPy Docs
+site_url: https://ghgpy.iclimate.io.vn/
+site_description: GHG inventory, make it easy.
+site_author: iClimate team
+
+repo_url: https://github.com/iclimate/ghgpy/
 
 theme:
   name: "material"
+  user_color_mode_toggle: true
+  locale: en
+  highlightjs: true
+  hljs_languages:
+    - yaml
+    - django
 
 plugins:
   - mkdocstrings
@@ -13,4 +24,5 @@ nav:
   - Getting Started: getting_started.md
   - Reference: reference.md
   - Patch History: patch_history.md
+  - Developer Guide: devdocs.md
   - License: license.md
