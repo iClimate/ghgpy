@@ -1,6 +1,6 @@
-This page contains in-depth documentation of `unitconverter` package.  Use it as a
+This page contains in-depth documentation of `ghgpy` package.  Use it as a
 reference for the technical implementation of the
-`converter` project code.
+`ghgpy` by iClimate project code.
 
 ::: src.ghgpy.datamodel.fuel
 ::: src.ghgpy.datamodel.ghggas
