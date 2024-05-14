@@ -1,1 +1,5 @@
 site/
+database/
+*.pyc
+__pycache__/
+private-notebook.ipynb

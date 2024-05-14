@@ -1,7 +1,7 @@
 """
 iClimate - ghgpy
 
-DEFAULT FUEL DATABASE
+DEFAULT EMISSION FACTOR DATABASE
 
 Data Sources: \n
 IPCC Guidelines for National Greenhouse Gas Inventories \n
@@ -12,53 +12,49 @@ https://www.ipcc-nggip.iges.or.jp/public/2006gl/pdf/2_Volume2/V2_2_Ch2_Stationar
 Main contributors: Vu Nang Nam
 """
 
-default_fuel_database = {
+s_combustion_general = {
     "DO": {
-        "desc": "Gas/Diesel Oil",
-        "ncv": {"value": 43.0,
+        "co2": {"value": 74100,
                 "uncertainty": 0
                 },
-        "ccf": {"value": 20.2,
-                "uncertainty": 0.4
-                },
-        "density": {"value": 844,
-                "uncertainty": 0
-                }
-    },
-    "COKE": {
-        "desc": "Coke coal",
-        "ncv": {"value": 43.0,
+        "ch4": {"value": 3.0,
                 "uncertainty": 0
                 },
-        "ccf": {"value": 20.2,
-                "uncertainty": 0.4
-                },
-        "density": {"value": 844,
+        "n2o": {"value": 0.6,
                 "uncertainty": 0
                 }
     },
-    "ANCI": {
-        "desc": "Anthracite coal",
-        "ncv": {"value": 43.0,
+    "DO": {
+        "co2": {"value": 74100,
                 "uncertainty": 0
                 },
-        "ccf": {"value": 20.2,
-                "uncertainty": 0.4
-                },
-        "density": {"value": 844,
-                "uncertainty": 0
-                }
-    },
-    "BROWN": {
-        "desc": "Lignite - brown coal",
-        "ncv": {"value": 43.0,
+        "ch4": {"value": 3.0,
                 "uncertainty": 0
                 },
-        "ccf": {"value": 20.2,
-                "uncertainty": 0.4
-                },
-        "density": {"value": 844,
+        "n2o": {"value": 0.6,
                 "uncertainty": 0
                 }
     },
+    "DO": {
+        "co2": {"value": 74100,
+                "uncertainty": 0
+                },
+        "ch4": {"value": 3.0,
+                "uncertainty": 0
+                },
+        "n2o": {"value": 0.6,
+                "uncertainty": 0
+                }
+    },
+    "DO": {
+        "co2": {"value": 74100,
+                "uncertainty": 0
+                },
+        "ch4": {"value": 3.0,
+                "uncertainty": 0
+                },
+        "n2o": {"value": 0.6,
+                "uncertainty": 0
+                }
+    }
 }
