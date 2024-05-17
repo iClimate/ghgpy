@@ -1,3 +1,14 @@
+"""
+iClimate - ghgpy
+
+Data handle
+
+Middleware between app and database
+
+(C) Bui Khac Tu (bkt92)
+(C) iClimate
+"""
+
 from sqlalchemy import create_engine
 import pandas as pd
 import os

@@ -205,7 +205,7 @@ class DefaultFuel(BaseFuel):
     https://wds.iea.org/wds/pdf/oil_documentation.pdf \n
 
     '''
-    def __init__(self, database :FuelDataHandle, fuel: str, amount: UNumber, unit: str):
+    def __init__(self, fuel: str, amount: UNumber, unit: str, database :FuelDataHandle):
         if not database.check_exist(fuel):
             raise ValueError("Fuel not found in database.")
         

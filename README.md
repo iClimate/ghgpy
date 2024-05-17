@@ -1,3 +1,11 @@
+# GHGPy (Green House Gas Python)
+
+---
+---
+![Python](https://img.shields.io/pypi/bkt92/ghgpy)
+![PyPI](https://img.shields.io/pypi/v/ghgpy)
+![license](https://img.shields.io/github/license/bkt92/ghgpy)
+
 <h1 align="center">
 <img src="https://github.com/bkt92/ghgpy/blob/bf841540ea4500ab9306586aacb6e961367fb77c/branding/logo/ghgpylogofull.jpeg" width="700">
 </h1><br>
@@ -11,6 +19,26 @@ GHGPy is a Python package for the GHG Inventory.
 - **Contributing:** https://ghgpy.iclimate.io.vn/devdocs/
 - **Bug reports:** https://github.com/iClimate/ghgpy/issues
 
+---
+
+## Installation
+
+Pip installable package:
+
+`pip install ghgpy`
+
+[pypi: ghgpy](https://pypi.org/project/ghgpy/)
+
+
+---
+
+## Requirements / Dependencies
+
+Python 3.11 and up
+
+---
+
+
 Call for Contributions
 ----------------------
 
@@ -19,28 +47,85 @@ The GHGPy project welcomes your expertise and enthusiasm!
 Examples
 ----------------------
 
-Inside of your python script you can now import the modules from the `ghgpy`
-package:
+## Basic Usage
 
-    # your_script.py
-    from ghgpy import factory
+### Import library
 
-After you've imported the package, you can use it:
+```python
+    # General factory 
+    from src.ghgpy.factory import FactoryGeneral
+    # Uncertainty data type
+    from src.ghgpy.datamodel.fuel import UNumber
 
-    # your_script.py
-    from ghgpy import factory
-    from ghgpy.activities.energy import combustion
+    # Database handles
+    from src.ghgpy.datamodel.db import FuelDataHandle, GHGDataHandle, EFDataHandle
+    # Default databases
+    from src.ghgpy.data.fuels import default_fuel_database
+    from src.ghgpy.data.ghg import ghg_gas_data
+    from src.ghgpy.data.efs import s_combustion_energy
+```
 
-First you need to crete a factory with basic information:
+### Create a factory
 
-    # your_script.py
-    your_factory = factory("your input here")
+```python
+    # Init the factory class
+    MyFactory = FactoryGeneral(name="Hong Ha Textile", desc = "Textile production for export!")
+```
 
-Then you can add a process to your factory with fuel data:
+### Connect to the database
 
-    # your_script.py
-    your_factory.add_process(combustion(fuel, "type of combustion"))
+```python
+    MyFactory.connection(FuelDataHandle(default_fuel_database),\
+                EFDataHandle(s_combustion_energy),\
+                    GHGDataHandle(ghg_gas_data, 'ar6'))
+```
 
-Get the total emission of your factory
+### Add a combussion process in factory
 
-    your_factory.emission()
+```python
+    MyFactory.add_combustion(name = "Boiler", desc = "Đốt lò hơi")
+```
+
+### Add another combussion process in factory
+
+```python
+    MyFactory.add_combustion(name = "Boiler1", desc = "Đốt lò than bùn")
+```
+
+### Add fuels use in these combussion
+
+```python
+    MyFactory.combustion["Boiler"].add('Diesel_Oil', UNumber(value=1000), 'l')
+    MyFactory.combustion["Boiler"].add('Anthracite', UNumber(value=1000), 'kg')
+    MyFactory.combustion["Boiler1"].add('Lignite', UNumber(value=1000), 'kg')
+```
+
+### Add refrigerant use in factory
+
+```python
+    MyFactory.add_refrigerantuse(name='AC', desc='refrigerant use for AC')
+```
+
+### Add amount of specific type of refrigerant
+
+```python
+    MyFactory.refrigerantuse["AC"].add("R32", UNumber(value=10, uncertainty=0), 'kg')
+```
+
+### Electriciy use in factory
+
+```python
+    MyFactory.add_elecuse(name='Office')
+```
+
+### Electriciy consumption
+
+```python
+    MyFactory.elecuse['Office'].add(name='01', amount=UNumber(value=1), unit='MWh', gef=UNumber(value=0.987), force=True)
+```
+
+### Calculate emission
+
+```python
+    MyFactory.emission(scope=1)
+```

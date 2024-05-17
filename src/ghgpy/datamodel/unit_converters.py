@@ -7,10 +7,11 @@ class energy_units:
     """
     Convert between difference energy units
     """
-    units = ['j', 'kj', 'mj', 'tj', 'gj', 'Tj']
+    units = ['j', 'kj', 'mj', 'tj', 'gj', 'Tj', 'kWh', 'Wh','MWh', 'GWh', 'TWh']
     @staticmethod
     def convert(val: float, unit_in: str, unit_out: str) -> float:
-        SI = {'j': 1.0, 'kj': 1000.0, 'mj': 1.0*10**6, 'gj': 1.0*10**9, 'tj': 1.0*10**12}
+        SI = {'j': 1.0, 'kj': 1000.0, 'mj': 1.0*10**6, 'gj': 1.0*10**9, 'tj': 1.0*10**12, \
+              'Wh': 3600 , 'kWh': 3600*10**3, 'MWh': 3600*10**6, 'GWh': 3600*10**9, 'TWh': 3600*10**12}
         return val * SI[unit_in] / SI[unit_out]
 
 class weigh_units:

@@ -12,6 +12,7 @@ from typing import Optional
 from pydantic import BaseModel
 from src.ghgpy.datamodel.db import GHGDataHandle
 from .unumber import UNumber, ufnum
+import logging
 
 class GHGDATA(BaseModel):
     name: str = None # Name of green house gas
@@ -43,8 +44,8 @@ class GHGGas(GHGDATA):
                 weight = volume_units.convert(amount, self.unit, 'm3')*self.density
                 return weigh_units.convert(weight, 'kg', unit)
     
-    def emission(self):
-        return self.cal_weight()*self.gwp
+    def emission(self, unit='t'):
+        return weigh_units.convert(self.cal_weight()*self.gwp, 't', unit)
 
     def __repr__(self) -> str:
         return (f'name={self.name!r}, amount={self.emission()!r} tCO2e')
@@ -114,3 +115,12 @@ class N2O(GHGGas):
         else:
             super().__init__(name="N2O", amount=amount, unit=unit, desc=database.get("N2O")["desc"], \
                            gwp=database.get("N2O")["gwp"], density=database.get("N2O")["density"])
+            
+class OtherGHG(GHGGas):
+    def __init__(self, name, amount, unit, database: GHGDataHandle):
+        if not database.check_exist(name):
+            logging.error(f'{self.name} data not not found in database.')
+            raise ValueError(f'{self.name} data not not found in database.')
+        else:
+            super().__init__(name=name, amount=amount, unit=unit, desc=database.get(name)["desc"], \
+                           gwp=database.get(name)["gwp"], density=database.get(name)["density"])

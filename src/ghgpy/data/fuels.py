@@ -4,10 +4,8 @@ iClimate - ghgpy
 DEFAULT FUEL DATABASE
 
 Data Sources: \n
-Calorific value: 2006 IPCC Guidelines for National Greenhouse Gas Inventories V2_Ch1 - TABLE 1.2:
-https://www.ipcc-nggip.iges.or.jp/public/2006gl/pdf/2_Volume2/V2_1_Ch1_Introduction.pdf \n
-Density: IEA Database documentation:
-https://wds.iea.org/wds/pdf/oil_documentation.pdf \n
+IPCC Guidelines for National Greenhouse Gas Inventories \n
+https://www.ipcc-nggip.iges.or.jp/public/2006gl/pdf/2_Volume2/V2_2_Ch2_Stationary_Combustion.pdf \n
 
 (C) Bui Khac Tu (bkt92)
 (C) iClimate
@@ -15,7 +13,7 @@ Main contributors: Vu Nang Nam
 """
 
 default_fuel_database = {
-    "DO": {
+    "Diesel_Oil": {
         "desc": "Gas/Diesel Oil",
         "ncv": {"value": 43.0,
                 "uncertainty": 0
@@ -39,7 +37,7 @@ default_fuel_database = {
                 "uncertainty": 0
                 }
     },
-    "FO": {
+    "RFO": {
         "desc": "Residual Fuel Oil",
         "ncv": {"value": 40.4,
                 "uncertainty": 0
@@ -51,7 +49,7 @@ default_fuel_database = {
                 "uncertainty": 0
                 }
     }
-    "Motor gasline": {
+    "Motor_gasline": {
         "desc": "Motor gasline",
         "ncv": {"value": 44.3,
                 "uncertainty": 0
