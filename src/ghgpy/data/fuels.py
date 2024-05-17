@@ -13,7 +13,7 @@ Main contributors: Vu Nang Nam
 """
 
 default_fuel_database = {
-    "DO": {
+    "Diesel_Oil": {
         "desc": "Gas/Diesel Oil",
         "ncv": {"value": 43.0,
                 "uncertainty": 0
@@ -25,7 +25,7 @@ default_fuel_database = {
                 "uncertainty": 0
                 }
     },
-    "COKE": {
+    "Coking_Coal": {
         "desc": "Coke coal",
         "ncv": {"value": 43.0,
                 "uncertainty": 0
@@ -37,7 +37,7 @@ default_fuel_database = {
                 "uncertainty": 0
                 }
     },
-    "ANCI": {
+    "Anthracite": {
         "desc": "Anthracite coal",
         "ncv": {"value": 43.0,
                 "uncertainty": 0
@@ -49,7 +49,7 @@ default_fuel_database = {
                 "uncertainty": 0
                 }
     },
-    "BROWN": {
+    "Lignite": {
         "desc": "Lignite - brown coal",
         "ncv": {"value": 43.0,
                 "uncertainty": 0

@@ -1,3 +1,11 @@
+# GHGPy (Green House Gas Python)
+
+---
+---
+![Python](https://img.shields.io/pypi/bkt92/ghgpy)
+![PyPI](https://img.shields.io/pypi/v/ghgpy)
+![license](https://img.shields.io/github/license/bkt92/ghgpy)
+
 <h1 align="center">
 <img src="https://github.com/bkt92/ghgpy/blob/bf841540ea4500ab9306586aacb6e961367fb77c/branding/logo/ghgpylogofull.jpeg" width="700">
 </h1><br>
@@ -11,6 +19,26 @@ GHGPy is a Python package for the GHG Inventory.
 - **Contributing:** https://ghgpy.iclimate.io.vn/devdocs/
 - **Bug reports:** https://github.com/iClimate/ghgpy/issues
 
+---
+
+## Installation
+
+Pip installable package:
+
+`pip install ghgpy`
+
+[pypi: ghgpy](https://pypi.org/project/ghgpy/)
+
+
+---
+
+## Requirements / Dependencies
+
+Python 3.11 and up
+
+---
+
+
 Call for Contributions
 ----------------------
 
@@ -19,11 +47,13 @@ The GHGPy project welcomes your expertise and enthusiasm!
 Examples
 ----------------------
 
-Inside of your python script you can now import the modules from the `ghgpy`
-package:
+## Basic Usage
 
-    # your_script.py
+### Create factory object
+
+```python
     from ghgpy import factory
+```
 
 After you've imported the package, you can use it:
 
