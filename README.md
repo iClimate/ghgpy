@@ -49,28 +49,83 @@ Examples
 
 ## Basic Usage
 
-### Create factory object
+### Import library
 
 ```python
-    from ghgpy import factory
+    # General factory 
+    from src.ghgpy.factory import FactoryGeneral
+    # Uncertainty data type
+    from src.ghgpy.datamodel.fuel import UNumber
+
+    # Database handles
+    from src.ghgpy.datamodel.db import FuelDataHandle, GHGDataHandle, EFDataHandle
+    # Default databases
+    from src.ghgpy.data.fuels import default_fuel_database
+    from src.ghgpy.data.ghg import ghg_gas_data
+    from src.ghgpy.data.efs import s_combustion_energy
 ```
 
-After you've imported the package, you can use it:
+### Create a factory
 
-    # your_script.py
-    from ghgpy import factory
-    from ghgpy.activities.energy import combustion
+```python
+    # Init the factory class
+    MyFactory = FactoryGeneral(name="Hong Ha Textile", desc = "Textile production for export!")
+```
 
-First you need to crete a factory with basic information:
+### Connect to the database
 
-    # your_script.py
-    your_factory = factory("your input here")
+```python
+    MyFactory.connection(FuelDataHandle(default_fuel_database),\
+                EFDataHandle(s_combustion_energy),\
+                    GHGDataHandle(ghg_gas_data, 'ar6'))
+```
 
-Then you can add a process to your factory with fuel data:
+### Add a combussion process in factory
 
-    # your_script.py
-    your_factory.add_process(combustion(fuel, "type of combustion"))
+```python
+    MyFactory.add_combustion(name = "Boiler", desc = "Đốt lò hơi")
+```
 
-Get the total emission of your factory
+### Add another combussion process in factory
 
-    your_factory.emission()
+```python
+    MyFactory.add_combustion(name = "Boiler1", desc = "Đốt lò than bùn")
+```
+
+### Add fuels use in these combussion
+
+```python
+    MyFactory.combustion["Boiler"].add('Diesel_Oil', UNumber(value=1000), 'l')
+    MyFactory.combustion["Boiler"].add('Anthracite', UNumber(value=1000), 'kg')
+    MyFactory.combustion["Boiler1"].add('Lignite', UNumber(value=1000), 'kg')
+```
+
+### Add refrigerant use in factory
+
+```python
+    MyFactory.add_refrigerantuse(name='AC', desc='refrigerant use for AC')
+```
+
+### Add amount of specific type of refrigerant
+
+```python
+    MyFactory.refrigerantuse["AC"].add("R32", UNumber(value=10, uncertainty=0), 'kg')
+```
+
+### Electriciy use in factory
+
+```python
+    MyFactory.add_elecuse(name='Office')
+```
+
+### Electriciy consumption
+
+```python
+    MyFactory.elecuse['Office'].add(name='01', amount=UNumber(value=1), unit='MWh', gef=UNumber(value=0.987), force=True)
+```
+
+### Calculate emission
+
+```python
+    MyFactory.emission(scope=1)
+```
