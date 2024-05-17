@@ -344,9 +344,18 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#src.ghgpy.activities.energy.Combustion.add_fuel" class="md-nav__link">
+  <a href="#src.ghgpy.activities.energy.Combustion.add" class="md-nav__link">
     <span class="md-ellipsis">
-      add_fuel
+      add
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#src.ghgpy.activities.energy.Combustion.add_custom" class="md-nav__link">
+    <span class="md-ellipsis">
+      add_custom
     </span>
   </a>
   
@@ -389,9 +398,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#src.ghgpy.activities.energy.Combustion.remove_fuel" class="md-nav__link">
+  <a href="#src.ghgpy.activities.energy.Combustion.remove" class="md-nav__link">
     <span class="md-ellipsis">
-      remove_fuel
+      remove
     </span>
   </a>
   
@@ -399,15 +408,6 @@
         
       </ul>
     </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#src.ghgpy.activities.energy.ElecUse" class="md-nav__link">
-    <span class="md-ellipsis">
-      ElecUse
-    </span>
-  </a>
   
 </li>
       
@@ -703,9 +703,18 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
-  <a href="#src.ghgpy.activities.energy.Combustion.add_fuel" class="md-nav__link">
+  <a href="#src.ghgpy.activities.energy.Combustion.add" class="md-nav__link">
     <span class="md-ellipsis">
-      add_fuel
+      add
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#src.ghgpy.activities.energy.Combustion.add_custom" class="md-nav__link">
+    <span class="md-ellipsis">
+      add_custom
     </span>
   </a>
   
@@ -748,9 +757,9 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#src.ghgpy.activities.energy.Combustion.remove_fuel" class="md-nav__link">
+  <a href="#src.ghgpy.activities.energy.Combustion.remove" class="md-nav__link">
     <span class="md-ellipsis">
-      remove_fuel
+      remove
     </span>
   </a>
   
@@ -758,15 +767,6 @@
         
       </ul>
     </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#src.ghgpy.activities.energy.ElecUse" class="md-nav__link">
-    <span class="md-ellipsis">
-      ElecUse
-    </span>
-  </a>
   
 </li>
       
@@ -1013,13 +1013,16 @@ Base on the IPCC 2006 w 2019 refinement
             Bases: <code><span title="src.ghgpy.activities.energy.ADCombussion">ADCombussion</span></code></p>
 
   
-      <p>Stationary combustion (SC)</p>
+      <p>Stationary combustion (SC)
+<code>name</code>: Activity name
+<code>desc</code>: More description
+<code>fuels_list</code>: Fuel list
+<code>efs_list</code>: List of emission factor corresponding to fuels
+<code>results</code>: Emission evaluation result <not input></p>
 
             <details class="quote">
               <summary>Source code in <code>src\ghgpy\activities\energy.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 24</span>
-<span class="normal"> 25</span>
-<span class="normal"> 26</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 26</span>
 <span class="normal"> 27</span>
 <span class="normal"> 28</span>
 <span class="normal"> 29</span>
@@ -1100,14 +1103,76 @@ Base on the IPCC 2006 w 2019 refinement
 <span class="normal">104</span>
 <span class="normal">105</span>
 <span class="normal">106</span>
-<span class="normal">107</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">Combustion</span><span class="p">(</span><span class="n">ADCombussion</span><span class="p">):</span>
+<span class="normal">107</span>
+<span class="normal">108</span>
+<span class="normal">109</span>
+<span class="normal">110</span>
+<span class="normal">111</span>
+<span class="normal">112</span>
+<span class="normal">113</span>
+<span class="normal">114</span>
+<span class="normal">115</span>
+<span class="normal">116</span>
+<span class="normal">117</span>
+<span class="normal">118</span>
+<span class="normal">119</span>
+<span class="normal">120</span>
+<span class="normal">121</span>
+<span class="normal">122</span>
+<span class="normal">123</span>
+<span class="normal">124</span>
+<span class="normal">125</span>
+<span class="normal">126</span>
+<span class="normal">127</span>
+<span class="normal">128</span>
+<span class="normal">129</span>
+<span class="normal">130</span>
+<span class="normal">131</span>
+<span class="normal">132</span>
+<span class="normal">133</span>
+<span class="normal">134</span>
+<span class="normal">135</span>
+<span class="normal">136</span>
+<span class="normal">137</span>
+<span class="normal">138</span>
+<span class="normal">139</span>
+<span class="normal">140</span>
+<span class="normal">141</span>
+<span class="normal">142</span>
+<span class="normal">143</span>
+<span class="normal">144</span>
+<span class="normal">145</span>
+<span class="normal">146</span>
+<span class="normal">147</span>
+<span class="normal">148</span>
+<span class="normal">149</span>
+<span class="normal">150</span>
+<span class="normal">151</span>
+<span class="normal">152</span>
+<span class="normal">153</span>
+<span class="normal">154</span>
+<span class="normal">155</span>
+<span class="normal">156</span>
+<span class="normal">157</span>
+<span class="normal">158</span>
+<span class="normal">159</span>
+<span class="normal">160</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">Combustion</span><span class="p">(</span><span class="n">ADCombussion</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Stationary combustion (SC)</span>
+<span class="sd">    `name`: Activity name</span>
+<span class="sd">    `desc`: More description</span>
+<span class="sd">    `fuels_list`: Fuel list</span>
+<span class="sd">    `efs_list`: List of emission factor corresponding to fuels</span>
+<span class="sd">    `results`: Emission evaluation result &lt;not input&gt;</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1">#def __init__(self, **kwargs):</span>
     <span class="c1">#    super().__init__(**kwargs)</span>
+    <span class="k">def</span> <span class="nf">connection</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fuel_db</span><span class="p">,</span> <span class="n">ef_db</span><span class="p">,</span> <span class="n">ghg_db</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fuel_db</span> <span class="o">=</span> <span class="n">fuel_db</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ef_db</span> <span class="o">=</span> <span class="n">ef_db</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">ghg_db</span> <span class="o">=</span> <span class="n">ghg_db</span>
 
-    <span class="k">def</span> <span class="nf">eval</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">database</span><span class="p">:</span> <span class="n">GHGDataHandle</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">eval</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Evaluate the activity for ghg emission</span>
 <span class="sd">        - Current GHG: CO2, CH4 and N2O</span>
@@ -1123,9 +1188,9 @@ Base on the IPCC 2006 w 2019 refinement
                 <span class="n">co2v</span> <span class="o">+=</span> <span class="n">energy</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">efs_list</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="s1">&#39;co2&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_ufnum</span><span class="p">()</span>
                 <span class="n">ch4v</span> <span class="o">+=</span> <span class="n">energy</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">efs_list</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="s1">&#39;ch4&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_ufnum</span><span class="p">()</span>
                 <span class="n">n2ov</span> <span class="o">+=</span> <span class="n">energy</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">efs_list</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="s1">&#39;n2o&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_ufnum</span><span class="p">()</span>
-            <span class="n">co2</span> <span class="o">=</span> <span class="n">CO2</span><span class="p">(</span><span class="n">ufnum</span><span class="p">(</span><span class="n">co2v</span><span class="p">)</span><span class="o">.</span><span class="n">to_unum</span><span class="p">(),</span> <span class="s1">&#39;kg&#39;</span><span class="p">,</span> <span class="n">database</span><span class="p">)</span>
-            <span class="n">ch4</span> <span class="o">=</span> <span class="n">CH4</span><span class="p">(</span><span class="n">ufnum</span><span class="p">(</span><span class="n">ch4v</span><span class="p">)</span><span class="o">.</span><span class="n">to_unum</span><span class="p">(),</span> <span class="s1">&#39;kg&#39;</span><span class="p">,</span> <span class="n">database</span><span class="p">)</span>
-            <span class="n">n2o</span> <span class="o">=</span> <span class="n">N2O</span><span class="p">(</span><span class="n">ufnum</span><span class="p">(</span><span class="n">n2ov</span><span class="p">)</span><span class="o">.</span><span class="n">to_unum</span><span class="p">(),</span> <span class="s1">&#39;kg&#39;</span><span class="p">,</span> <span class="n">database</span><span class="p">)</span>
+            <span class="n">co2</span> <span class="o">=</span> <span class="n">CO2</span><span class="p">(</span><span class="n">ufnum</span><span class="p">(</span><span class="n">co2v</span><span class="p">)</span><span class="o">.</span><span class="n">to_unum</span><span class="p">(),</span> <span class="s1">&#39;kg&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ghg_db</span><span class="p">)</span>
+            <span class="n">ch4</span> <span class="o">=</span> <span class="n">CH4</span><span class="p">(</span><span class="n">ufnum</span><span class="p">(</span><span class="n">ch4v</span><span class="p">)</span><span class="o">.</span><span class="n">to_unum</span><span class="p">(),</span> <span class="s1">&#39;kg&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ghg_db</span><span class="p">)</span>
+            <span class="n">n2o</span> <span class="o">=</span> <span class="n">N2O</span><span class="p">(</span><span class="n">ufnum</span><span class="p">(</span><span class="n">n2ov</span><span class="p">)</span><span class="o">.</span><span class="n">to_unum</span><span class="p">(),</span> <span class="s1">&#39;kg&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ghg_db</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">results</span> <span class="o">=</span> <span class="p">[</span><span class="n">co2</span><span class="p">,</span> <span class="n">ch4</span><span class="p">,</span> <span class="n">n2o</span><span class="p">]</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">results</span>
 
@@ -1133,44 +1198,86 @@ Base on the IPCC 2006 w 2019 refinement
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Total emission in unit of CO2e (`Default in metric tonnes`)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">results</span> <span class="o">==</span> <span class="kc">None</span><span class="p">:</span>
-            <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;The emission data is not evaluated yet, eval now ...&quot;</span><span class="p">)</span>
-            <span class="k">return</span> <span class="s2">&quot;&quot;&quot;The emission data is not evaluated yet! </span><span class="se">\n</span>
-<span class="s2">                        Eval now with eval() function&quot;&quot;&quot;</span>
-
+        <span class="bp">self</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>
         <span class="k">return</span> <span class="n">weigh_units</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="nb">sum</span><span class="p">([</span><span class="n">x</span><span class="o">.</span><span class="n">emission</span><span class="p">()</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="p">]),</span> <span class="s1">&#39;t&#39;</span><span class="p">,</span> <span class="n">unit</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">add_fuel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fuel</span><span class="p">:</span> <span class="n">BaseFuel</span><span class="p">,</span> <span class="n">efdb</span><span class="p">:</span> <span class="n">EFDataHandle</span><span class="p">,</span> <span class="n">force</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">amount</span><span class="p">,</span> <span class="n">unit</span><span class="p">,</span> <span class="n">fuel_db</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">efdb</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">force</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Add a fuel to fuels list of combussion class </span>
+<span class="sd">        Add a fuel to fuels list </span>
 <span class="sd">        - Required database for emission factors</span>
 <span class="sd">        - Required fuel class (datamodel)</span>
 <span class="sd">        - `force` = True: Overwrite existing fuel data</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">force</span><span class="p">:</span>
-            <span class="k">if</span> <span class="n">fuel</span><span class="o">.</span><span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">fuels_list</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
-                <span class="k">return</span> <span class="s2">&quot;Fuel exist in database, using `force = True` to overwrite!&quot;</span>
-        <span class="k">if</span> <span class="ow">not</span> <span class="n">efdb</span><span class="o">.</span><span class="n">check_exist</span><span class="p">(</span><span class="n">fuel</span><span class="o">.</span><span class="n">name</span><span class="p">):</span>
-            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Fuel not found in database.&quot;</span><span class="p">)</span>
-        <span class="n">efco2</span> <span class="o">=</span> <span class="n">UNumber</span><span class="p">(</span><span class="o">**</span><span class="n">efdb</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">fuel</span><span class="o">.</span><span class="n">name</span><span class="p">)[</span><span class="s2">&quot;co2&quot;</span><span class="p">])</span>
-        <span class="n">efch4</span> <span class="o">=</span> <span class="n">UNumber</span><span class="p">(</span><span class="o">**</span><span class="n">efdb</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">fuel</span><span class="o">.</span><span class="n">name</span><span class="p">)[</span><span class="s2">&quot;ch4&quot;</span><span class="p">])</span>
-        <span class="n">efn2o</span> <span class="o">=</span> <span class="n">UNumber</span><span class="p">(</span><span class="o">**</span><span class="n">efdb</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">fuel</span><span class="o">.</span><span class="n">name</span><span class="p">)[</span><span class="s2">&quot;n2o&quot;</span><span class="p">])</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">fuels_list</span><span class="p">[</span><span class="n">fuel</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">fuel</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">efs_list</span><span class="p">[</span><span class="n">fuel</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;co2&#39;</span><span class="p">:</span> <span class="n">efco2</span><span class="p">,</span> <span class="s1">&#39;ch4&#39;</span><span class="p">:</span> <span class="n">efch4</span><span class="p">,</span> <span class="s1">&#39;n2o&#39;</span><span class="p">:</span> <span class="n">efn2o</span><span class="p">}</span>
-        <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;Added </span><span class="si">{</span><span class="n">fuel</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1">&#39;</span>
+        <span class="k">if</span> <span class="n">efdb</span> <span class="o">==</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">ef_db</span> <span class="o">==</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;No db connection&quot;</span><span class="p">)</span>
+                <span class="k">return</span> <span class="s2">&quot;No db connection&quot;</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">efdb</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ef_db</span>
+        <span class="k">if</span> <span class="n">fuel_db</span> <span class="o">==</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">fuel_db</span> <span class="o">==</span> <span class="kc">None</span><span class="p">:</span>
+                <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;No db connection&quot;</span><span class="p">)</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">fuel_db</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fuel_db</span>
 
-    <span class="k">def</span> <span class="nf">remove_fuel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">force</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">fuels_list</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+                <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1"> exist in list, using `force = True` to overwrite!&#39;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">efdb</span><span class="o">.</span><span class="n">check_exist</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+            <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1"> not found in database.&#39;</span><span class="p">)</span>
+        <span class="n">efco2</span> <span class="o">=</span> <span class="n">UNumber</span><span class="p">(</span><span class="o">**</span><span class="n">efdb</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">name</span><span class="p">)[</span><span class="s2">&quot;co2&quot;</span><span class="p">])</span>
+        <span class="n">efch4</span> <span class="o">=</span> <span class="n">UNumber</span><span class="p">(</span><span class="o">**</span><span class="n">efdb</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">name</span><span class="p">)[</span><span class="s2">&quot;ch4&quot;</span><span class="p">])</span>
+        <span class="n">efn2o</span> <span class="o">=</span> <span class="n">UNumber</span><span class="p">(</span><span class="o">**</span><span class="n">efdb</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">name</span><span class="p">)[</span><span class="s2">&quot;n2o&quot;</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fuels_list</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">DefaultFuel</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">amount</span><span class="p">,</span> <span class="n">unit</span><span class="p">,</span> <span class="n">fuel_db</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">efs_list</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;co2&#39;</span><span class="p">:</span> <span class="n">efco2</span><span class="p">,</span> <span class="s1">&#39;ch4&#39;</span><span class="p">:</span> <span class="n">efch4</span><span class="p">,</span> <span class="s1">&#39;n2o&#39;</span><span class="p">:</span> <span class="n">efn2o</span><span class="p">}</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;Added </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1"> to </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1">&#39;</span>
+
+    <span class="k">def</span> <span class="nf">add_custom</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fuel_data</span><span class="p">,</span> <span class="n">ef_data</span><span class="p">,</span> <span class="n">force</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Remote a fuel from the list\n</span>
+<span class="sd">        Add a custom fuel to fuels list with custom data</span>
+<span class="sd">        fuel_data = {</span>
+<span class="sd">            &#39;name&#39;: &#39;Diesel_Oil&#39;,</span>
+<span class="sd">            &#39;amount&#39;: {&#39;value&#39;: 1000.0, &#39;uncertainty&#39;: 0},</span>
+<span class="sd">            &#39;unit&#39;: &#39;l&#39;,</span>
+<span class="sd">            &#39;properties&#39;: {</span>
+<span class="sd">                &#39;desc&#39;: &#39;Gas/Diesel Oil&#39;,</span>
+<span class="sd">                &#39;ncv&#39;: {&#39;value&#39;: 43.0, &#39;uncertainty&#39;: 0.0},</span>
+<span class="sd">                &#39;ccf&#39;: {&#39;value&#39;: 20.2, &#39;uncertainty&#39;: 0.4},</span>
+<span class="sd">                &#39;density&#39;: {&#39;value&#39;: 844.0, &#39;uncertainty&#39;: 0.0}}}</span>
+
+<span class="sd">        ef_data = {</span>
+<span class="sd">            &quot;co2&quot;: {&quot;value&quot;: 54600,</span>
+<span class="sd">                    &quot;uncertainty&quot;: 0</span>
+<span class="sd">                    },</span>
+<span class="sd">            &quot;ch4&quot;: {&quot;value&quot;: 1,</span>
+<span class="sd">                    &quot;uncertainty&quot;: 0</span>
+<span class="sd">                    },</span>
+<span class="sd">            &quot;n2o&quot;: {&quot;value&quot;: 0.1,</span>
+<span class="sd">                    &quot;uncertainty&quot;: 0}</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">force</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">fuel_data</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">fuels_list</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+                <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">fuel_data</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span><span class="si">}</span><span class="s1"> exist in list, using `force = True` to overwrite!&#39;</span>
+
+        <span class="n">efco2</span> <span class="o">=</span> <span class="n">UNumber</span><span class="p">(</span><span class="o">**</span><span class="n">ef_data</span><span class="p">[</span><span class="s2">&quot;co2&quot;</span><span class="p">])</span>
+        <span class="n">efch4</span> <span class="o">=</span> <span class="n">UNumber</span><span class="p">(</span><span class="o">**</span><span class="n">ef_data</span><span class="p">[</span><span class="s2">&quot;ch4&quot;</span><span class="p">])</span>
+        <span class="n">efn2o</span> <span class="o">=</span> <span class="n">UNumber</span><span class="p">(</span><span class="o">**</span><span class="n">ef_data</span><span class="p">[</span><span class="s2">&quot;n2o&quot;</span><span class="p">])</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">fuels_list</span><span class="p">[</span><span class="n">fuel_data</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]]</span> <span class="o">=</span> <span class="n">BaseFuel</span><span class="p">(</span><span class="o">**</span><span class="n">fuel_data</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">efs_list</span><span class="p">[</span><span class="n">fuel_data</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;co2&#39;</span><span class="p">:</span> <span class="n">efco2</span><span class="p">,</span> <span class="s1">&#39;ch4&#39;</span><span class="p">:</span> <span class="n">efch4</span><span class="p">,</span> <span class="s1">&#39;n2o&#39;</span><span class="p">:</span> <span class="n">efn2o</span><span class="p">}</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;Added </span><span class="si">{</span><span class="n">fuel_data</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span><span class="si">}</span><span class="s1"> to </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1">&#39;</span>
+
+    <span class="k">def</span> <span class="nf">remove</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+<span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Remove a fuel from the list\n</span>
 <span class="sd">        Use list_fuels() method to check the list</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">fuels_list</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">fuels_list</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">efs_list</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
-            <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;Removed </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1">&#39;</span>
+            <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;Removed </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1"> from </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1">&#39;</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="s2">&quot;Fuel not in the list&quot;</span>
+            <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1"> not in the list&#39;</span>
 
     <span class="k">def</span> <span class="nf">list_fuels</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
@@ -1183,7 +1290,7 @@ Base on the IPCC 2006 w 2019 refinement
 <span class="w">        </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Load data to the class</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="o">**</span><span class="n">data</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="o">**</span><span class="n">data</span><span class="p">)</span> 
 </code></pre></div></td></tr></table></div>
             </details>
 
@@ -1204,58 +1311,188 @@ Base on the IPCC 2006 w 2019 refinement
 
 
 
-<h3 id="src.ghgpy.activities.energy.Combustion.add_fuel" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">add_fuel</span><span class="p">(</span><span class="n">fuel</span><span class="p">,</span> <span class="n">efdb</span><span class="p">,</span> <span class="n">force</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></code>
+<h3 id="src.ghgpy.activities.energy.Combustion.add" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">add</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">amount</span><span class="p">,</span> <span class="n">unit</span><span class="p">,</span> <span class="n">fuel_db</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">efdb</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">force</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></code>
 
 </h3>
 
 
   <div class="doc doc-contents ">
   
-      <p>Add a fuel to fuels list of combussion class 
+      <p>Add a fuel to fuels list 
 - Required database for emission factors
 - Required fuel class (datamodel)
 - <code>force</code> = True: Overwrite existing fuel data</p>
 
           <details class="quote">
             <summary>Source code in <code>src\ghgpy\activities\energy.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">64</span>
-<span class="normal">65</span>
-<span class="normal">66</span>
-<span class="normal">67</span>
-<span class="normal">68</span>
-<span class="normal">69</span>
-<span class="normal">70</span>
-<span class="normal">71</span>
-<span class="normal">72</span>
-<span class="normal">73</span>
-<span class="normal">74</span>
-<span class="normal">75</span>
-<span class="normal">76</span>
-<span class="normal">77</span>
-<span class="normal">78</span>
-<span class="normal">79</span>
-<span class="normal">80</span>
-<span class="normal">81</span>
-<span class="normal">82</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">add_fuel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fuel</span><span class="p">:</span> <span class="n">BaseFuel</span><span class="p">,</span> <span class="n">efdb</span><span class="p">:</span> <span class="n">EFDataHandle</span><span class="p">,</span> <span class="n">force</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 71</span>
+<span class="normal"> 72</span>
+<span class="normal"> 73</span>
+<span class="normal"> 74</span>
+<span class="normal"> 75</span>
+<span class="normal"> 76</span>
+<span class="normal"> 77</span>
+<span class="normal"> 78</span>
+<span class="normal"> 79</span>
+<span class="normal"> 80</span>
+<span class="normal"> 81</span>
+<span class="normal"> 82</span>
+<span class="normal"> 83</span>
+<span class="normal"> 84</span>
+<span class="normal"> 85</span>
+<span class="normal"> 86</span>
+<span class="normal"> 87</span>
+<span class="normal"> 88</span>
+<span class="normal"> 89</span>
+<span class="normal"> 90</span>
+<span class="normal"> 91</span>
+<span class="normal"> 92</span>
+<span class="normal"> 93</span>
+<span class="normal"> 94</span>
+<span class="normal"> 95</span>
+<span class="normal"> 96</span>
+<span class="normal"> 97</span>
+<span class="normal"> 98</span>
+<span class="normal"> 99</span>
+<span class="normal">100</span>
+<span class="normal">101</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">add</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">,</span> <span class="n">amount</span><span class="p">,</span> <span class="n">unit</span><span class="p">,</span> <span class="n">fuel_db</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">efdb</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">force</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Add a fuel to fuels list of combussion class </span>
+<span class="sd">    Add a fuel to fuels list </span>
 <span class="sd">    - Required database for emission factors</span>
 <span class="sd">    - Required fuel class (datamodel)</span>
 <span class="sd">    - `force` = True: Overwrite existing fuel data</span>
 
 <span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="n">efdb</span> <span class="o">==</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">ef_db</span> <span class="o">==</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;No db connection&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="s2">&quot;No db connection&quot;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">efdb</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">ef_db</span>
+    <span class="k">if</span> <span class="n">fuel_db</span> <span class="o">==</span> <span class="kc">None</span><span class="p">:</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">fuel_db</span> <span class="o">==</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;No db connection&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">fuel_db</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">fuel_db</span>
+
     <span class="k">if</span> <span class="ow">not</span> <span class="n">force</span><span class="p">:</span>
-        <span class="k">if</span> <span class="n">fuel</span><span class="o">.</span><span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">fuels_list</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
-            <span class="k">return</span> <span class="s2">&quot;Fuel exist in database, using `force = True` to overwrite!&quot;</span>
-    <span class="k">if</span> <span class="ow">not</span> <span class="n">efdb</span><span class="o">.</span><span class="n">check_exist</span><span class="p">(</span><span class="n">fuel</span><span class="o">.</span><span class="n">name</span><span class="p">):</span>
-        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Fuel not found in database.&quot;</span><span class="p">)</span>
-    <span class="n">efco2</span> <span class="o">=</span> <span class="n">UNumber</span><span class="p">(</span><span class="o">**</span><span class="n">efdb</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">fuel</span><span class="o">.</span><span class="n">name</span><span class="p">)[</span><span class="s2">&quot;co2&quot;</span><span class="p">])</span>
-    <span class="n">efch4</span> <span class="o">=</span> <span class="n">UNumber</span><span class="p">(</span><span class="o">**</span><span class="n">efdb</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">fuel</span><span class="o">.</span><span class="n">name</span><span class="p">)[</span><span class="s2">&quot;ch4&quot;</span><span class="p">])</span>
-    <span class="n">efn2o</span> <span class="o">=</span> <span class="n">UNumber</span><span class="p">(</span><span class="o">**</span><span class="n">efdb</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">fuel</span><span class="o">.</span><span class="n">name</span><span class="p">)[</span><span class="s2">&quot;n2o&quot;</span><span class="p">])</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">fuels_list</span><span class="p">[</span><span class="n">fuel</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">fuel</span>
-    <span class="bp">self</span><span class="o">.</span><span class="n">efs_list</span><span class="p">[</span><span class="n">fuel</span><span class="o">.</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;co2&#39;</span><span class="p">:</span> <span class="n">efco2</span><span class="p">,</span> <span class="s1">&#39;ch4&#39;</span><span class="p">:</span> <span class="n">efch4</span><span class="p">,</span> <span class="s1">&#39;n2o&#39;</span><span class="p">:</span> <span class="n">efn2o</span><span class="p">}</span>
-    <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;Added </span><span class="si">{</span><span class="n">fuel</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1">&#39;</span>
+        <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">fuels_list</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+            <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1"> exist in list, using `force = True` to overwrite!&#39;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">efdb</span><span class="o">.</span><span class="n">check_exist</span><span class="p">(</span><span class="n">name</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1"> not found in database.&#39;</span><span class="p">)</span>
+    <span class="n">efco2</span> <span class="o">=</span> <span class="n">UNumber</span><span class="p">(</span><span class="o">**</span><span class="n">efdb</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">name</span><span class="p">)[</span><span class="s2">&quot;co2&quot;</span><span class="p">])</span>
+    <span class="n">efch4</span> <span class="o">=</span> <span class="n">UNumber</span><span class="p">(</span><span class="o">**</span><span class="n">efdb</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">name</span><span class="p">)[</span><span class="s2">&quot;ch4&quot;</span><span class="p">])</span>
+    <span class="n">efn2o</span> <span class="o">=</span> <span class="n">UNumber</span><span class="p">(</span><span class="o">**</span><span class="n">efdb</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">name</span><span class="p">)[</span><span class="s2">&quot;n2o&quot;</span><span class="p">])</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">fuels_list</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="n">DefaultFuel</span><span class="p">(</span><span class="n">name</span><span class="p">,</span> <span class="n">amount</span><span class="p">,</span> <span class="n">unit</span><span class="p">,</span> <span class="n">fuel_db</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">efs_list</span><span class="p">[</span><span class="n">name</span><span class="p">]</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;co2&#39;</span><span class="p">:</span> <span class="n">efco2</span><span class="p">,</span> <span class="s1">&#39;ch4&#39;</span><span class="p">:</span> <span class="n">efch4</span><span class="p">,</span> <span class="s1">&#39;n2o&#39;</span><span class="p">:</span> <span class="n">efn2o</span><span class="p">}</span>
+    <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;Added </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1"> to </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1">&#39;</span>
+</code></pre></div></td></tr></table></div>
+          </details>
+  </div>
+
+</div>
+
+
+<div class="doc doc-object doc-function">
+
+
+
+<h3 id="src.ghgpy.activities.energy.Combustion.add_custom" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">add_custom</span><span class="p">(</span><span class="n">fuel_data</span><span class="p">,</span> <span class="n">ef_data</span><span class="p">,</span> <span class="n">force</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span></code>
+
+</h3>
+
+
+  <div class="doc doc-contents ">
+  
+      <p>Add a custom fuel to fuels list with custom data
+fuel_data = {
+    'name': 'Diesel_Oil',
+    'amount': {'value': 1000.0, 'uncertainty': 0},
+    'unit': 'l',
+    'properties': {
+        'desc': 'Gas/Diesel Oil',
+        'ncv': {'value': 43.0, 'uncertainty': 0.0},
+        'ccf': {'value': 20.2, 'uncertainty': 0.4},
+        'density': {'value': 844.0, 'uncertainty': 0.0}}}</p>
+<p>ef_data = {
+    "co2": {"value": 54600,
+            "uncertainty": 0
+            },
+    "ch4": {"value": 1,
+            "uncertainty": 0
+            },
+    "n2o": {"value": 0.1,
+            "uncertainty": 0}</p>
+
+          <details class="quote">
+            <summary>Source code in <code>src\ghgpy\activities\energy.py</code></summary>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">103</span>
+<span class="normal">104</span>
+<span class="normal">105</span>
+<span class="normal">106</span>
+<span class="normal">107</span>
+<span class="normal">108</span>
+<span class="normal">109</span>
+<span class="normal">110</span>
+<span class="normal">111</span>
+<span class="normal">112</span>
+<span class="normal">113</span>
+<span class="normal">114</span>
+<span class="normal">115</span>
+<span class="normal">116</span>
+<span class="normal">117</span>
+<span class="normal">118</span>
+<span class="normal">119</span>
+<span class="normal">120</span>
+<span class="normal">121</span>
+<span class="normal">122</span>
+<span class="normal">123</span>
+<span class="normal">124</span>
+<span class="normal">125</span>
+<span class="normal">126</span>
+<span class="normal">127</span>
+<span class="normal">128</span>
+<span class="normal">129</span>
+<span class="normal">130</span>
+<span class="normal">131</span>
+<span class="normal">132</span>
+<span class="normal">133</span>
+<span class="normal">134</span>
+<span class="normal">135</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">add_custom</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fuel_data</span><span class="p">,</span> <span class="n">ef_data</span><span class="p">,</span> <span class="n">force</span><span class="o">=</span><span class="kc">False</span><span class="p">):</span>
+<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Add a custom fuel to fuels list with custom data</span>
+<span class="sd">    fuel_data = {</span>
+<span class="sd">        &#39;name&#39;: &#39;Diesel_Oil&#39;,</span>
+<span class="sd">        &#39;amount&#39;: {&#39;value&#39;: 1000.0, &#39;uncertainty&#39;: 0},</span>
+<span class="sd">        &#39;unit&#39;: &#39;l&#39;,</span>
+<span class="sd">        &#39;properties&#39;: {</span>
+<span class="sd">            &#39;desc&#39;: &#39;Gas/Diesel Oil&#39;,</span>
+<span class="sd">            &#39;ncv&#39;: {&#39;value&#39;: 43.0, &#39;uncertainty&#39;: 0.0},</span>
+<span class="sd">            &#39;ccf&#39;: {&#39;value&#39;: 20.2, &#39;uncertainty&#39;: 0.4},</span>
+<span class="sd">            &#39;density&#39;: {&#39;value&#39;: 844.0, &#39;uncertainty&#39;: 0.0}}}</span>
+
+<span class="sd">    ef_data = {</span>
+<span class="sd">        &quot;co2&quot;: {&quot;value&quot;: 54600,</span>
+<span class="sd">                &quot;uncertainty&quot;: 0</span>
+<span class="sd">                },</span>
+<span class="sd">        &quot;ch4&quot;: {&quot;value&quot;: 1,</span>
+<span class="sd">                &quot;uncertainty&quot;: 0</span>
+<span class="sd">                },</span>
+<span class="sd">        &quot;n2o&quot;: {&quot;value&quot;: 0.1,</span>
+<span class="sd">                &quot;uncertainty&quot;: 0}</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">if</span> <span class="ow">not</span> <span class="n">force</span><span class="p">:</span>
+        <span class="k">if</span> <span class="n">fuel_data</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">fuels_list</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+            <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">fuel_data</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span><span class="si">}</span><span class="s1"> exist in list, using `force = True` to overwrite!&#39;</span>
+
+    <span class="n">efco2</span> <span class="o">=</span> <span class="n">UNumber</span><span class="p">(</span><span class="o">**</span><span class="n">ef_data</span><span class="p">[</span><span class="s2">&quot;co2&quot;</span><span class="p">])</span>
+    <span class="n">efch4</span> <span class="o">=</span> <span class="n">UNumber</span><span class="p">(</span><span class="o">**</span><span class="n">ef_data</span><span class="p">[</span><span class="s2">&quot;ch4&quot;</span><span class="p">])</span>
+    <span class="n">efn2o</span> <span class="o">=</span> <span class="n">UNumber</span><span class="p">(</span><span class="o">**</span><span class="n">ef_data</span><span class="p">[</span><span class="s2">&quot;n2o&quot;</span><span class="p">])</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">fuels_list</span><span class="p">[</span><span class="n">fuel_data</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]]</span> <span class="o">=</span> <span class="n">BaseFuel</span><span class="p">(</span><span class="o">**</span><span class="n">fuel_data</span><span class="p">)</span>
+    <span class="bp">self</span><span class="o">.</span><span class="n">efs_list</span><span class="p">[</span><span class="n">fuel_data</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]]</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;co2&#39;</span><span class="p">:</span> <span class="n">efco2</span><span class="p">,</span> <span class="s1">&#39;ch4&#39;</span><span class="p">:</span> <span class="n">efch4</span><span class="p">,</span> <span class="s1">&#39;n2o&#39;</span><span class="p">:</span> <span class="n">efn2o</span><span class="p">}</span>
+    <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;Added </span><span class="si">{</span><span class="n">fuel_data</span><span class="p">[</span><span class="s2">&quot;name&quot;</span><span class="p">]</span><span class="si">}</span><span class="s1"> to </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1">&#39;</span>
 </code></pre></div></td></tr></table></div>
           </details>
   </div>
@@ -1279,24 +1516,16 @@ Base on the IPCC 2006 w 2019 refinement
 
           <details class="quote">
             <summary>Source code in <code>src\ghgpy\activities\energy.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">53</span>
-<span class="normal">54</span>
-<span class="normal">55</span>
-<span class="normal">56</span>
-<span class="normal">57</span>
-<span class="normal">58</span>
-<span class="normal">59</span>
-<span class="normal">60</span>
-<span class="normal">61</span>
-<span class="normal">62</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">emission</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s1">&#39;t&#39;</span><span class="p">):</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">64</span>
+<span class="normal">65</span>
+<span class="normal">66</span>
+<span class="normal">67</span>
+<span class="normal">68</span>
+<span class="normal">69</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">emission</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s1">&#39;t&#39;</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Total emission in unit of CO2e (`Default in metric tonnes`)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">results</span> <span class="o">==</span> <span class="kc">None</span><span class="p">:</span>
-        <span class="n">logging</span><span class="o">.</span><span class="n">info</span><span class="p">(</span><span class="s2">&quot;The emission data is not evaluated yet, eval now ...&quot;</span><span class="p">)</span>
-        <span class="k">return</span> <span class="s2">&quot;&quot;&quot;The emission data is not evaluated yet! </span><span class="se">\n</span>
-<span class="s2">                    Eval now with eval() function&quot;&quot;&quot;</span>
-
+    <span class="bp">self</span><span class="o">.</span><span class="n">eval</span><span class="p">()</span>
     <span class="k">return</span> <span class="n">weigh_units</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="nb">sum</span><span class="p">([</span><span class="n">x</span><span class="o">.</span><span class="n">emission</span><span class="p">()</span> <span class="k">for</span> <span class="n">x</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">results</span><span class="p">]),</span> <span class="s1">&#39;t&#39;</span><span class="p">,</span> <span class="n">unit</span><span class="p">)</span>
 </code></pre></div></td></tr></table></div>
           </details>
@@ -1310,7 +1539,7 @@ Base on the IPCC 2006 w 2019 refinement
 
 
 <h3 id="src.ghgpy.activities.energy.Combustion.eval" class="doc doc-heading">
-          <code class="highlight language-python"><span class="nb">eval</span><span class="p">(</span><span class="n">database</span><span class="p">)</span></code>
+          <code class="highlight language-python"><span class="nb">eval</span><span class="p">()</span></code>
 
 </h3>
 
@@ -1324,18 +1553,7 @@ Base on the IPCC 2006 w 2019 refinement
 
           <details class="quote">
             <summary>Source code in <code>src\ghgpy\activities\energy.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">31</span>
-<span class="normal">32</span>
-<span class="normal">33</span>
-<span class="normal">34</span>
-<span class="normal">35</span>
-<span class="normal">36</span>
-<span class="normal">37</span>
-<span class="normal">38</span>
-<span class="normal">39</span>
-<span class="normal">40</span>
-<span class="normal">41</span>
-<span class="normal">42</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">42</span>
 <span class="normal">43</span>
 <span class="normal">44</span>
 <span class="normal">45</span>
@@ -1344,7 +1562,18 @@ Base on the IPCC 2006 w 2019 refinement
 <span class="normal">48</span>
 <span class="normal">49</span>
 <span class="normal">50</span>
-<span class="normal">51</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">eval</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">database</span><span class="p">:</span> <span class="n">GHGDataHandle</span><span class="p">):</span>
+<span class="normal">51</span>
+<span class="normal">52</span>
+<span class="normal">53</span>
+<span class="normal">54</span>
+<span class="normal">55</span>
+<span class="normal">56</span>
+<span class="normal">57</span>
+<span class="normal">58</span>
+<span class="normal">59</span>
+<span class="normal">60</span>
+<span class="normal">61</span>
+<span class="normal">62</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">eval</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Evaluate the activity for ghg emission</span>
 <span class="sd">    - Current GHG: CO2, CH4 and N2O</span>
@@ -1360,9 +1589,9 @@ Base on the IPCC 2006 w 2019 refinement
             <span class="n">co2v</span> <span class="o">+=</span> <span class="n">energy</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">efs_list</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="s1">&#39;co2&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_ufnum</span><span class="p">()</span>
             <span class="n">ch4v</span> <span class="o">+=</span> <span class="n">energy</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">efs_list</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="s1">&#39;ch4&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_ufnum</span><span class="p">()</span>
             <span class="n">n2ov</span> <span class="o">+=</span> <span class="n">energy</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">efs_list</span><span class="p">[</span><span class="n">key</span><span class="p">][</span><span class="s1">&#39;n2o&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">to_ufnum</span><span class="p">()</span>
-        <span class="n">co2</span> <span class="o">=</span> <span class="n">CO2</span><span class="p">(</span><span class="n">ufnum</span><span class="p">(</span><span class="n">co2v</span><span class="p">)</span><span class="o">.</span><span class="n">to_unum</span><span class="p">(),</span> <span class="s1">&#39;kg&#39;</span><span class="p">,</span> <span class="n">database</span><span class="p">)</span>
-        <span class="n">ch4</span> <span class="o">=</span> <span class="n">CH4</span><span class="p">(</span><span class="n">ufnum</span><span class="p">(</span><span class="n">ch4v</span><span class="p">)</span><span class="o">.</span><span class="n">to_unum</span><span class="p">(),</span> <span class="s1">&#39;kg&#39;</span><span class="p">,</span> <span class="n">database</span><span class="p">)</span>
-        <span class="n">n2o</span> <span class="o">=</span> <span class="n">N2O</span><span class="p">(</span><span class="n">ufnum</span><span class="p">(</span><span class="n">n2ov</span><span class="p">)</span><span class="o">.</span><span class="n">to_unum</span><span class="p">(),</span> <span class="s1">&#39;kg&#39;</span><span class="p">,</span> <span class="n">database</span><span class="p">)</span>
+        <span class="n">co2</span> <span class="o">=</span> <span class="n">CO2</span><span class="p">(</span><span class="n">ufnum</span><span class="p">(</span><span class="n">co2v</span><span class="p">)</span><span class="o">.</span><span class="n">to_unum</span><span class="p">(),</span> <span class="s1">&#39;kg&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ghg_db</span><span class="p">)</span>
+        <span class="n">ch4</span> <span class="o">=</span> <span class="n">CH4</span><span class="p">(</span><span class="n">ufnum</span><span class="p">(</span><span class="n">ch4v</span><span class="p">)</span><span class="o">.</span><span class="n">to_unum</span><span class="p">(),</span> <span class="s1">&#39;kg&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ghg_db</span><span class="p">)</span>
+        <span class="n">n2o</span> <span class="o">=</span> <span class="n">N2O</span><span class="p">(</span><span class="n">ufnum</span><span class="p">(</span><span class="n">n2ov</span><span class="p">)</span><span class="o">.</span><span class="n">to_unum</span><span class="p">(),</span> <span class="s1">&#39;kg&#39;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">ghg_db</span><span class="p">)</span>
     <span class="bp">self</span><span class="o">.</span><span class="n">results</span> <span class="o">=</span> <span class="p">[</span><span class="n">co2</span><span class="p">,</span> <span class="n">ch4</span><span class="p">,</span> <span class="n">n2o</span><span class="p">]</span>
     <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">results</span>
 </code></pre></div></td></tr></table></div>
@@ -1388,11 +1617,11 @@ Base on the IPCC 2006 w 2019 refinement
 
           <details class="quote">
             <summary>Source code in <code>src\ghgpy\activities\energy.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal"> 96</span>
-<span class="normal"> 97</span>
-<span class="normal"> 98</span>
-<span class="normal"> 99</span>
-<span class="normal">100</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">list_fuels</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">149</span>
+<span class="normal">150</span>
+<span class="normal">151</span>
+<span class="normal">152</span>
+<span class="normal">153</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">list_fuels</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    List all fuels in the combustion class</span>
 <span class="sd">    &quot;&quot;&quot;</span>
@@ -1424,17 +1653,17 @@ Base on the IPCC 2006 w 2019 refinement
 
           <details class="quote">
             <summary>Source code in <code>src\ghgpy\activities\energy.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">102</span>
-<span class="normal">103</span>
-<span class="normal">104</span>
-<span class="normal">105</span>
-<span class="normal">106</span>
-<span class="normal">107</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@classmethod</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">155</span>
+<span class="normal">156</span>
+<span class="normal">157</span>
+<span class="normal">158</span>
+<span class="normal">159</span>
+<span class="normal">160</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@classmethod</span>
 <span class="k">def</span> <span class="nf">load_data</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Load data to the class</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="o">**</span><span class="n">data</span><span class="p">)</span>
+    <span class="k">return</span> <span class="bp">cls</span><span class="p">(</span><span class="o">**</span><span class="n">data</span><span class="p">)</span> 
 </code></pre></div></td></tr></table></div>
           </details>
   </div>
@@ -1446,129 +1675,45 @@ Base on the IPCC 2006 w 2019 refinement
 
 
 
-<h3 id="src.ghgpy.activities.energy.Combustion.remove_fuel" class="doc doc-heading">
-          <code class="highlight language-python"><span class="n">remove_fuel</span><span class="p">(</span><span class="n">name</span><span class="p">)</span></code>
+<h3 id="src.ghgpy.activities.energy.Combustion.remove" class="doc doc-heading">
+          <code class="highlight language-python"><span class="n">remove</span><span class="p">(</span><span class="n">name</span><span class="p">)</span></code>
 
 </h3>
 
 
   <div class="doc doc-contents ">
   
-      <p>Remote a fuel from the list</p>
+      <p>Remove a fuel from the list</p>
 <p>Use list_fuels() method to check the list</p>
 
           <details class="quote">
             <summary>Source code in <code>src\ghgpy\activities\energy.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">84</span>
-<span class="normal">85</span>
-<span class="normal">86</span>
-<span class="normal">87</span>
-<span class="normal">88</span>
-<span class="normal">89</span>
-<span class="normal">90</span>
-<span class="normal">91</span>
-<span class="normal">92</span>
-<span class="normal">93</span>
-<span class="normal">94</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">remove_fuel</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">137</span>
+<span class="normal">138</span>
+<span class="normal">139</span>
+<span class="normal">140</span>
+<span class="normal">141</span>
+<span class="normal">142</span>
+<span class="normal">143</span>
+<span class="normal">144</span>
+<span class="normal">145</span>
+<span class="normal">146</span>
+<span class="normal">147</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">remove</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">name</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Remote a fuel from the list\n</span>
+<span class="sd">    Remove a fuel from the list\n</span>
 <span class="sd">    Use list_fuels() method to check the list</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">if</span> <span class="n">name</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">fuels_list</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">fuels_list</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">efs_list</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="n">name</span><span class="p">)</span>
-        <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;Removed </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1">&#39;</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;Removed </span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1"> from </span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">}</span><span class="s1">&#39;</span>
     <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span> <span class="s2">&quot;Fuel not in the list&quot;</span>
+        <span class="k">return</span> <span class="sa">f</span><span class="s1">&#39;</span><span class="si">{</span><span class="n">name</span><span class="si">}</span><span class="s1"> not in the list&#39;</span>
 </code></pre></div></td></tr></table></div>
           </details>
   </div>
 
 </div>
-
-
-
-  </div>
-
-  </div>
-
-
-</div>
-
-<div class="doc doc-object doc-class">
-
-
-
-<h2 id="src.ghgpy.activities.energy.ElecUse" class="doc doc-heading">
-          <code>ElecUse</code>
-
-
-</h2>
-
-
-  <div class="doc doc-contents ">
-          <p class="doc doc-class-bases">
-            Bases: <code><span title="pydantic.BaseModel">BaseModel</span></code></p>
-
-  
-      <p>Electricity use data class</p>
-<p><code>consumption</code>: power consumption in unit 
-<code>unit</code>: unit of power 
-<code>year</code>: [optional] year of power consumption 
-<code>location</code>: [optional] location of end-user 
-<code>gef</code>: git emission factor (in year)</p>
-
-            <details class="quote">
-              <summary>Source code in <code>src\ghgpy\activities\energy.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">110</span>
-<span class="normal">111</span>
-<span class="normal">112</span>
-<span class="normal">113</span>
-<span class="normal">114</span>
-<span class="normal">115</span>
-<span class="normal">116</span>
-<span class="normal">117</span>
-<span class="normal">118</span>
-<span class="normal">119</span>
-<span class="normal">120</span>
-<span class="normal">121</span>
-<span class="normal">122</span>
-<span class="normal">123</span>
-<span class="normal">124</span>
-<span class="normal">125</span>
-<span class="normal">126</span>
-<span class="normal">127</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">ElecUse</span><span class="p">(</span><span class="n">BaseModel</span><span class="p">):</span>
-<span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Electricity use data class\n</span>
-<span class="sd">    `consumption`: power consumption in unit </span>
-<span class="sd">    `unit`: unit of power </span>
-<span class="sd">    `year`: [optional] year of power consumption </span>
-<span class="sd">    `location`: [optional] location of end-user </span>
-<span class="sd">    `gef`: git emission factor (in year)</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">consumption</span><span class="p">:</span> <span class="n">UNumber</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="n">unit</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="n">year</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">int</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="n">location</span><span class="p">:</span> <span class="n">Optional</span><span class="p">[</span><span class="nb">str</span><span class="p">]</span> <span class="o">=</span> <span class="kc">None</span>
-    <span class="n">gef</span><span class="p">:</span> <span class="n">UNumber</span> <span class="o">=</span> <span class="kc">None</span> <span class="c1"># tCO2e/MWh</span>
-
-    <span class="k">def</span> <span class="nf">emission</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s1">&#39;tonne&#39;</span><span class="p">):</span>
-        <span class="n">energy</span> <span class="o">=</span> <span class="n">energy_units</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">consumption</span><span class="o">.</span><span class="n">to_ufnum</span><span class="p">(),</span> <span class="bp">self</span><span class="o">.</span><span class="n">unit</span><span class="p">,</span> <span class="s1">&#39;MWh&#39;</span><span class="p">)</span>
-        <span class="k">return</span> <span class="n">weigh_units</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="n">energy</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">gef</span><span class="o">.</span><span class="n">to_ufnum</span><span class="p">(),</span> <span class="s1">&#39;tonne&#39;</span><span class="p">,</span> <span class="n">unit</span><span class="p">)</span>
-</code></pre></div></td></tr></table></div>
-            </details>
-
-  
-
-  <div class="doc doc-children">
-
-
-
-
-
-
-
-
 
 
 
@@ -2347,7 +2492,7 @@ https://wds.iea.org/wds/pdf/oil_documentation.pdf</p>
 <span class="sd">    https://wds.iea.org/wds/pdf/oil_documentation.pdf \n</span>
 
 <span class="sd">    &#39;&#39;&#39;</span>
-    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">database</span> <span class="p">:</span><span class="n">FuelDataHandle</span><span class="p">,</span> <span class="n">fuel</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">amount</span><span class="p">:</span> <span class="n">UNumber</span><span class="p">,</span> <span class="n">unit</span><span class="p">:</span> <span class="nb">str</span><span class="p">):</span>
+    <span class="k">def</span> <span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fuel</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">amount</span><span class="p">:</span> <span class="n">UNumber</span><span class="p">,</span> <span class="n">unit</span><span class="p">:</span> <span class="nb">str</span><span class="p">,</span> <span class="n">database</span> <span class="p">:</span><span class="n">FuelDataHandle</span><span class="p">):</span>
         <span class="k">if</span> <span class="ow">not</span> <span class="n">database</span><span class="o">.</span><span class="n">check_exist</span><span class="p">(</span><span class="n">fuel</span><span class="p">):</span>
             <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Fuel not found in database.&quot;</span><span class="p">)</span>
 
@@ -2640,8 +2785,7 @@ Represent a amount of a specific ghg gas
 
             <details class="quote">
               <summary>Source code in <code>src\ghgpy\datamodel\ghg.py</code></summary>
-              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">24</span>
-<span class="normal">25</span>
+              <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">25</span>
 <span class="normal">26</span>
 <span class="normal">27</span>
 <span class="normal">28</span>
@@ -2708,7 +2852,8 @@ Represent a amount of a specific ghg gas
 <span class="normal">89</span>
 <span class="normal">90</span>
 <span class="normal">91</span>
-<span class="normal">92</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">GHGGas</span><span class="p">(</span><span class="n">GHGDATA</span><span class="p">):</span>
+<span class="normal">92</span>
+<span class="normal">93</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">class</span> <span class="nc">GHGGas</span><span class="p">(</span><span class="n">GHGDATA</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    GHG Gas Object (use for all kind of GHG gas) \n</span>
 <span class="sd">    Representative by tCO2e \n</span>
@@ -2730,8 +2875,8 @@ Represent a amount of a specific ghg gas
                 <span class="n">weight</span> <span class="o">=</span> <span class="n">volume_units</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="n">amount</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">unit</span><span class="p">,</span> <span class="s1">&#39;m3&#39;</span><span class="p">)</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">density</span>
                 <span class="k">return</span> <span class="n">weigh_units</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="n">weight</span><span class="p">,</span> <span class="s1">&#39;kg&#39;</span><span class="p">,</span> <span class="n">unit</span><span class="p">)</span>
 
-    <span class="k">def</span> <span class="nf">emission</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">cal_weight</span><span class="p">()</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">gwp</span>
+    <span class="k">def</span> <span class="nf">emission</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s1">&#39;t&#39;</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">weigh_units</span><span class="o">.</span><span class="n">convert</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">cal_weight</span><span class="p">()</span><span class="o">*</span><span class="bp">self</span><span class="o">.</span><span class="n">gwp</span><span class="p">,</span> <span class="s1">&#39;t&#39;</span><span class="p">,</span> <span class="n">unit</span><span class="p">)</span>
 
     <span class="k">def</span> <span class="fm">__repr__</span><span class="p">(</span><span class="bp">self</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">str</span><span class="p">:</span>
         <span class="k">return</span> <span class="p">(</span><span class="sa">f</span><span class="s1">&#39;name=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">name</span><span class="si">!r}</span><span class="s1">, amount=</span><span class="si">{</span><span class="bp">self</span><span class="o">.</span><span class="n">emission</span><span class="p">()</span><span class="si">!r}</span><span class="s1"> tCO2e&#39;</span><span class="p">)</span>
@@ -2810,8 +2955,7 @@ Default unit metric tonnes</p>
 
           <details class="quote">
             <summary>Source code in <code>src\ghgpy\datamodel\ghg.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">31</span>
-<span class="normal">32</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">32</span>
 <span class="normal">33</span>
 <span class="normal">34</span>
 <span class="normal">35</span>
@@ -2823,7 +2967,8 @@ Default unit metric tonnes</p>
 <span class="normal">41</span>
 <span class="normal">42</span>
 <span class="normal">43</span>
-<span class="normal">44</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">cal_weight</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s1">&#39;tonne&#39;</span><span class="p">):</span>
+<span class="normal">44</span>
+<span class="normal">45</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="k">def</span> <span class="nf">cal_weight</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">unit</span><span class="o">=</span><span class="s1">&#39;tonne&#39;</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    Convert to metric unit /n</span>
 <span class="sd">    Default unit metric tonnes</span>
@@ -2869,8 +3014,7 @@ Default unit metric tonnes</p>
 
           <details class="quote">
             <summary>Source code in <code>src\ghgpy\datamodel\ghg.py</code></summary>
-            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">82</span>
-<span class="normal">83</span>
+            <div class="highlight"><table class="highlighttable"><tr><td class="linenos"><div class="linenodiv"><pre><span></span><span class="normal">83</span>
 <span class="normal">84</span>
 <span class="normal">85</span>
 <span class="normal">86</span>
@@ -2879,7 +3023,8 @@ Default unit metric tonnes</p>
 <span class="normal">89</span>
 <span class="normal">90</span>
 <span class="normal">91</span>
-<span class="normal">92</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@classmethod</span>
+<span class="normal">92</span>
+<span class="normal">93</span></pre></div></td><td class="code"><div><pre><span></span><code><span class="nd">@classmethod</span>
 <span class="k">def</span> <span class="nf">from_dict</span><span class="p">(</span><span class="bp">cls</span><span class="p">,</span> <span class="n">data</span><span class="p">):</span>
 <span class="w">    </span><span class="sd">&#39;&#39;&#39;</span>
 <span class="sd">    {&#39;name&#39;: {&#39;title&#39;: &#39;Name&#39;, &#39;type&#39;: &#39;string&#39;},</span>
