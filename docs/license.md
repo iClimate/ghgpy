@@ -1,21 +1,49 @@
-MIT License
+# License
 
-Copyright (c) 2024 iClimate
+## GHGPy Non-Commercial License
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+**Copyright (c) 2024-2026 Bùi Khắc Tú / iClimate**
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+### Summary
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
-SOFTWARE.
+| Permission | Condition |
+|------------|-----------|
+| ✅ Personal use | Free |
+| ✅ Academic/Research use | Free |
+| ✅ Modification | Free (for non-commercial) |
+| ✅ Distribution | Free (for non-commercial, with attribution) |
+| ❌ Commercial use | **Requires written agreement** |
+
+### Non-Commercial Use
+
+You are free to:
+- Use the Software for personal projects
+- Use the Software for academic research
+- Modify and adapt the Software
+- Share the Software with others
+
+As long as you:
+- Include the original copyright notice
+- Do not use it for commercial purposes
+- Provide attribution to the original authors
+
+### Commercial Use
+
+**Commercial use is NOT permitted** without prior written agreement from the developer.
+
+Commercial use includes:
+- Using in commercial products or services
+- Providing paid consulting or services
+- Revenue-generating business processes
+- Selling or licensing the Software
+
+### Contact for Commercial License
+
+To obtain a commercial license, please contact:
+
+- **Email:** bkt992@gmail.com
+- **Website:** [iClimate](https://iclimate.io.vn) | [DecarbDirect](https://decarbdirect.com)
+
+### Disclaimer
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND. See the full [LICENSE](https://github.com/iClimate/ghgpy/blob/main/LICENSE) file for complete terms.

@@ -1,21 +1,67 @@
-MIT License
+GHGPy Non-Commercial License
 
-Copyright (c) 2024 Bùi Khắc Tú
+Copyright (c) 2024-2026 Bùi Khắc Tú / iClimate
 
-Permission is hereby granted, free of charge, to any person obtaining a copy
-of this software and associated documentation files (the "Software"), to deal
-in the Software without restriction, including without limitation the rights
-to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
-copies of the Software, and to permit persons to whom the Software is
-furnished to do so, subject to the following conditions:
+TERMS AND CONDITIONS
 
-The above copyright notice and this permission notice shall be included in all
-copies or substantial portions of the Software.
+1. DEFINITIONS
 
-THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
-IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
-FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
-AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
-LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
-OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+"Software" refers to GHGPy and all associated files, documentation, and materials.
+"Commercial Use" means any use of the Software intended for or directed toward 
+commercial advantage or monetary compensation.
+"Developer" refers to Bùi Khắc Tú and iClimate.
+
+2. GRANT OF LICENSE
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of 
+this Software, to use, copy, modify, and distribute the Software for NON-COMMERCIAL 
+purposes only, subject to the following conditions:
+
+   a) The above copyright notice and this permission notice shall be included in 
+      all copies or substantial portions of the Software.
+   
+   b) Any modifications must be clearly marked as such and must not be 
+      misrepresented as the original Software.
+
+3. COMMERCIAL USE RESTRICTION
+
+Commercial use of the Software is NOT permitted without prior written agreement 
+from the Developer. To obtain a commercial license, please contact:
+
+   Email: bkt992@gmail.com
+   Website: https://iclimate.io.vn
+
+Commercial use includes, but is not limited to:
+   - Using the Software in a commercial product or service
+   - Using the Software to provide paid consulting or services
+   - Using the Software in a revenue-generating business process
+   - Selling or licensing the Software or derivatives
+
+4. ATTRIBUTION
+
+Any use of the Software must include appropriate attribution to the original 
+authors and a link to the original repository:
+
+   https://github.com/iClimate/ghgpy
+
+5. DISCLAIMER OF WARRANTY
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR 
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, 
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE 
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER 
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, 
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE 
 SOFTWARE.
+
+6. TERMINATION
+
+This license is automatically terminated if you violate any of its terms. Upon 
+termination, you must destroy all copies of the Software in your possession.
+
+---
+
+For commercial licensing inquiries, please contact:
+Bùi Khắc Tú / iClimate
+Email: bkt992@gmail.com
+Website: https://iclimate.io.vn | https://decarbdirect.com
