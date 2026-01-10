@@ -8,9 +8,14 @@ openpyxl>=3.0.0  # Excel file support
 # Database
 sqlalchemy>=2.0.0
 
+# Data modeling
+pydantic>=2.0.0
+uncertainty-datatypes
+
 # Development dependencies
 pytest>=7.0.0
 pytest-cov>=4.0.0
+pip-tools
 flake8>=6.0.0
 mypy>=1.0.0
 black>=23.0.0

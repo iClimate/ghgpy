@@ -1,0 +1,16 @@
+site_name: GHGPy Docs
+
+theme:
+  name: "readthedocs"
+
+plugins:
+  - mkdocstrings
+  - search
+
+nav:
+  - index.md
+  - About: about.md
+  - Getting Started: getting_started.md
+  - Reference: reference.md
+  - Patch History: patch_history.md
+  - License: license.md

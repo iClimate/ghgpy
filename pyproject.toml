@@ -1,20 +1,21 @@
 [build-system]
-requires = ["setuptools>=61.0", "wheel"]
+requires = ["setuptools>=67.8.0", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "ghgpy"
-version = "0.1.0"
-description = "A Python package for GHG (Greenhouse Gas) Inventory calculations based on IPCC Guidelines"
+version = "1.0.0"
+description = "Carbon inventory, make it easy!"
 readme = "README.md"
-license = {text = "MIT"}
+license = {file = "LICENSE"}
 authors = [
-    {name = "Bùi Khắc Tú", email = "bkt92@outlook.com"}
+    {name = "Bui Khac Tu", email = "bkt992@gmail.com"}
 ]
 maintainers = [
-    {name = "Bùi Khắc Tú", email = "bkt92@outlook.com"}
+    {name = "Bui Khac Tu", email = "bkt992@gmail.com"}
 ]
 keywords = [
+    "ghgpy",
     "ghg",
     "greenhouse gas",
     "emissions",
@@ -22,6 +23,7 @@ keywords = [
     "ipcc",
     "climate",
     "carbon",
+    "sustainability",
     "environment",
 ]
 classifiers = [
@@ -31,14 +33,12 @@ classifiers = [
     "License :: OSI Approved :: MIT License",
     "Operating System :: OS Independent",
     "Programming Language :: Python :: 3",
-    "Programming Language :: Python :: 3.9",
-    "Programming Language :: Python :: 3.10",
     "Programming Language :: Python :: 3.11",
     "Programming Language :: Python :: 3.12",
     "Topic :: Scientific/Engineering",
     "Topic :: Scientific/Engineering :: Atmospheric Science",
 ]
-requires-python = ">=3.9"
+requires-python = ">=3.11.0"
 dependencies = [
     "pandas>=1.5.0",
     "openpyxl>=3.0.0",
@@ -49,6 +49,7 @@ dependencies = [
 dev = [
     "pytest>=7.0.0",
     "pytest-cov>=4.0.0",
+    "pip-tools",
     "flake8>=6.0.0",
     "mypy>=1.0.0",
     "black>=23.0.0",
@@ -61,10 +62,10 @@ docs = [
 ]
 
 [project.urls]
-Homepage = "https://ghgpy.iclimate.io.vn"
+Homepage = "https://ghgpy.iclimate.io.vn/"
 Documentation = "https://ghgpy.iclimate.io.vn"
-Repository = "https://github.com/bkt92/ghgpy"
-Issues = "https://github.com/bkt92/ghgpy/issues"
+Repository = "https://github.com/iClimate/ghgpy"
+Issues = "https://github.com/iClimate/ghgpy/issues"
 
 [tool.setuptools.packages.find]
 where = ["src"]
@@ -79,9 +80,9 @@ python_functions = ["test_*"]
 
 [tool.black]
 line-length = 88
-target-version = ["py39", "py310", "py311", "py312"]
+target-version = ["py311", "py312"]
 
 [tool.mypy]
-python_version = "3.9"
+python_version = "3.11"
 warn_return_any = true
 warn_unused_configs = true
