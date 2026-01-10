@@ -1,6 +1,10 @@
-Unit Converter is a simple Python package, allowing you to perform various unit conversions
+GHGpy is a python pakage, backbone for our GHG Inventory platform.
 
-This component is lightweight, high performance and does not require any additional dependencies.
+This is an intuitive, lightweight, high performance GHG accouting tool.
+
+With special number type: `ufnum` easy to evaluate the data uncertainly.
+
+Compliant with IPCC 2006 and GHG Protocol, with the latest database update (limited free database).
 
 For more information on how to start using the package, check:
 
