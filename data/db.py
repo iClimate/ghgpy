@@ -20,7 +20,7 @@ class fuels_database:
         if db == 'mysql':
             pass
         if db == 'xlsx':
-            self.data = pd.read_excel(os.path.join(os.path.dirname(__file__), 'database\database.xlsx'))
+            self.data = pd.read_excel(os.path.join(os.path.dirname(__file__), 'database.xlsx'))
 
     def connect(self):
         """
@@ -46,4 +46,3 @@ class fuels_database:
         """
         Print the list of default data on the database.
         """
-

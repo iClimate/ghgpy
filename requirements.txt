@@ -1,0 +1,20 @@
+# GHGPy - GHG Inventory Python Package
+# Core dependencies
+
+# Data handling
+pandas>=1.5.0
+openpyxl>=3.0.0  # Excel file support
+
+# Database
+sqlalchemy>=2.0.0
+
+# Development dependencies
+pytest>=7.0.0
+pytest-cov>=4.0.0
+flake8>=6.0.0
+mypy>=1.0.0
+black>=23.0.0
+
+# Optional: Documentation
+# sphinx>=6.0.0
+# sphinx-rtd-theme>=1.0.0

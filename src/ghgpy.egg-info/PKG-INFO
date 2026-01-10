@@ -1,0 +1,108 @@
+Metadata-Version: 2.4
+Name: ghgpy
+Version: 0.1.0
+Summary: A Python package for GHG (Greenhouse Gas) Inventory calculations based on IPCC Guidelines
+Author-email: Bùi Khắc Tú <bkt92@outlook.com>
+Maintainer-email: Bùi Khắc Tú <bkt92@outlook.com>
+License: MIT
+Project-URL: Homepage, https://ghgpy.iclimate.io.vn
+Project-URL: Documentation, https://ghgpy.iclimate.io.vn
+Project-URL: Repository, https://github.com/bkt92/ghgpy
+Project-URL: Issues, https://github.com/bkt92/ghgpy/issues
+Keywords: ghg,greenhouse gas,emissions,inventory,ipcc,climate,carbon,environment
+Classifier: Development Status :: 3 - Alpha
+Classifier: Intended Audience :: Science/Research
+Classifier: Intended Audience :: Developers
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Classifier: Programming Language :: Python :: 3
+Classifier: Programming Language :: Python :: 3.9
+Classifier: Programming Language :: Python :: 3.10
+Classifier: Programming Language :: Python :: 3.11
+Classifier: Programming Language :: Python :: 3.12
+Classifier: Topic :: Scientific/Engineering
+Classifier: Topic :: Scientific/Engineering :: Atmospheric Science
+Requires-Python: >=3.9
+Description-Content-Type: text/markdown
+License-File: LICENSE
+Requires-Dist: pandas>=1.5.0
+Requires-Dist: openpyxl>=3.0.0
+Requires-Dist: sqlalchemy>=2.0.0
+Provides-Extra: dev
+Requires-Dist: pytest>=7.0.0; extra == "dev"
+Requires-Dist: pytest-cov>=4.0.0; extra == "dev"
+Requires-Dist: flake8>=6.0.0; extra == "dev"
+Requires-Dist: mypy>=1.0.0; extra == "dev"
+Requires-Dist: black>=23.0.0; extra == "dev"
+Requires-Dist: build>=1.0.0; extra == "dev"
+Requires-Dist: twine>=4.0.0; extra == "dev"
+Provides-Extra: docs
+Requires-Dist: sphinx>=6.0.0; extra == "docs"
+Requires-Dist: sphinx-rtd-theme>=1.0.0; extra == "docs"
+Dynamic: license-file
+
+<h1 align="center">
+<img src="https://github.com/bkt92/ghgpy/blob/bf841540ea4500ab9306586aacb6e961367fb77c/branding/logo/ghgpylogofull.jpeg" width="700">
+</h1><br>
+
+# GHGPy
+
+A Python package for GHG (Greenhouse Gas) Inventory calculations based on IPCC 2006 Guidelines with 2019 Refinements.
+
+[![PyPI version](https://badge.fury.io/py/ghgpy.svg)](https://badge.fury.io/py/ghgpy)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Python 3.9+](https://img.shields.io/badge/python-3.9+-blue.svg)](https://www.python.org/downloads/)
+
+## Installation
+
+```bash
+pip install ghgpy
+```
+
+For development:
+```bash
+pip install ghgpy[dev]
+```
+
+## Quick Start
+
+```python
+from ghgpy import __version__
+from ghgpy.data import fuels_database
+
+# Load the emission factors database
+db = fuels_database(db='xlsx')
+
+# Display available data
+print(f"GHGPy v{__version__}")
+print(f"Number of emission factors: {len(db.data)}")
+print(db.data.head())
+```
+
+## Features
+
+- **IPCC 2006 Guidelines**: Emission factors from IPCC 2006 with 2019 Refinements
+- **Multiple Sectors**: Support for Energy, IPPU, AFOLU, and Waste sectors
+- **Flexible Database**: Excel-based database with SQLite/MySQL support
+- **Unit Converters**: Built-in energy, weight, and volume conversions
+
+## Links
+
+- **Website:** https://ghgpy.iclimate.io.vn
+- **Documentation:** https://ghgpy.iclimate.io.vn
+- **Source code:** https://github.com/bkt92/ghgpy
+- **Contributing:** https://ghgpy.iclimate.io.vn/devdocs/dev/index.html
+- **Bug reports:** https://github.com/bkt92/ghgpy/issues
+
+## Call for Contributions
+
+The GHGPy project welcomes your expertise and enthusiasm! We're looking for contributors to help with:
+
+- Adding emission factors for additional regions
+- Implementing new calculation methodologies
+- Improving documentation
+- Writing tests
+
+## License
+
+MIT License - see [LICENSE](LICENSE) for details.

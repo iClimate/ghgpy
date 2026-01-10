@@ -1,0 +1,12 @@
+# Include package data files
+include src/ghgpy/data/*.xlsx
+
+# Include documentation
+include LICENSE
+include README.md
+
+# Exclude development files
+exclude .gitignore
+global-exclude __pycache__
+global-exclude *.py[cod]
+global-exclude .git*
